@@ -30,9 +30,9 @@ const Sidebar = ({children}) => {
           <div className="h-[6rem] flex flex-row items-center justify-center">
           <img
               src="/logo.jpg"
-              className={clsx("h-full overflow-hidden transition-all",
+              className={clsx(" overflow-hidden transition-all",
                 {
-                    "w-[6rem] mt[2rem] mr-[1.5rem]":expanded
+                    "w-[6rem] mt[2rem] h-full mr-[1.5rem]":expanded
                 },
                 {
                     "w-[2rem] h-[2rem]": !expanded
