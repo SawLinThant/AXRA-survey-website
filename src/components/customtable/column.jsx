@@ -16,7 +16,7 @@ export const columns = [
       header: "Type",
       enableColumnFilter: true,
       filterFn: (row, columnId, filterValue) => {
-        if (filterValue.length === 0) return true; // No filter applied
+        if (filterValue.length === 0) return true; 
         const cellValue = row.getValue(columnId);
         return filterValue.includes(cellValue);
       },

@@ -30,6 +30,7 @@ const CustomTable = () => {
   const [data, setData] = useState([...dummyData]);
   const [columnFilters, setColumnFilters] = useState([]);
   const filterOptions = ["partner", "service", "job"];
+  const [filter, setFilter] = useState("");
 
   const table = useReactTable({
     data,
@@ -37,11 +38,13 @@ const CustomTable = () => {
     pageCount: Math.ceil(data.length / 5),
     state: {
       columnFilters,
+      globalFilter: filter,
     },
     initialState: { pagination: { pageSize: 5 } },
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
+    onGlobalFilterChange: setFilter,
   });
 
   const handleExport = () => {
@@ -90,16 +93,14 @@ const CustomTable = () => {
       <div className="flex items-center py-4">
         <Input
           placeholder="Filter name..."
-          value={table.getColumn("name")?.getFilterValue() ?? ""}
-          onChange={(event) => {
-            table.getColumn("name")?.setFilterValue(event.target.value);
-          }}
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
           className="max-w-sm"
         />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto">
-              Columns <ChevronDown className="ml-2 h-4 w-4" />
+              Type Filter <ChevronDown className="ml-2 h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
