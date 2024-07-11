@@ -46,7 +46,9 @@ const CustomTable = () => {
 
   const handleExport = () => {
     const headers = columnWithoudId.map((column) => column.header);
-    const filteredData = table.getFilteredRowModel().rows.map((row) => row.original);
+    const filteredData = table
+      .getFilteredRowModel()
+      .rows.map((row) => row.original);
     let csvContent = "data:text/csv;charset=utf-8,";
     csvContent += headers.join(",") + "\r\n";
     filteredData.forEach((row) => {
@@ -88,13 +90,10 @@ const CustomTable = () => {
       <div className="flex items-center py-4">
         <Input
           placeholder="Filter name..."
-          value={(table.getColumn("name")?.getFilterValue()) ?? ""}
-          onChange={(event) =>{
+          value={table.getColumn("name")?.getFilterValue() ?? ""}
+          onChange={(event) => {
             table.getColumn("name")?.setFilterValue(event.target.value);
-            console.log("get")
-          }
-           
-          }
+          }}
           className="max-w-sm"
         />
         <DropdownMenu>
@@ -108,9 +107,9 @@ const CustomTable = () => {
               <DropdownMenuCheckboxItem
                 key={option}
                 className="capitalize"
-                checked={
-                  columnFilters.find((f) => f.id === "type")?.value.includes(option)
-                }
+                checked={columnFilters
+                  .find((f) => f.id === "type")
+                  ?.value.includes(option)}
                 onCheckedChange={() => handleFilterChange(option)}
               >
                 {option}
@@ -149,14 +148,20 @@ const CustomTable = () => {
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
                     </TableCell>
                   ))}
                 </TableRow>
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={columnWithoudId.length} className="h-24 text-center">
+                <TableCell
+                  colSpan={columnWithoudId.length}
+                  className="h-24 text-center"
+                >
                   No results.
                 </TableCell>
               </TableRow>
@@ -168,7 +173,8 @@ const CustomTable = () => {
         <span>
           Page{" "}
           <strong>
-            {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
+            {table.getState().pagination.pageIndex + 1} of{" "}
+            {table.getPageCount()}
           </strong>{" "}
         </span>
         <div className="space-x-2">
