@@ -1,0 +1,197 @@
+import { useState } from "react";
+import {
+  flexRender,
+  getCoreRowModel,
+  useReactTable,
+  getPaginationRowModel,
+  getFilteredRowModel,
+} from "@tanstack/react-table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { columnWithoudId } from "./column.jsx";
+import { ChevronDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { dummyData } from "./data";
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+
+const CustomTable = () => {
+  const [data, setData] = useState([...dummyData]);
+  const [columnFilters, setColumnFilters] = useState([]);
+  const filterOptions = ["partner", "service", "job"];
+
+  const table = useReactTable({
+    data,
+    columns: columnWithoudId,
+    pageCount: Math.ceil(data.length / 5),
+    state: {
+      columnFilters,
+    },
+    initialState: { pagination: { pageSize: 5 } },
+    getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+  });
+
+  const handleExport = () => {
+    const headers = columnWithoudId.map((column) => column.header);
+    const filteredData = table.getFilteredRowModel().rows.map((row) => row.original);
+    let csvContent = "data:text/csv;charset=utf-8,";
+    csvContent += headers.join(",") + "\r\n";
+    filteredData.forEach((row) => {
+      let rowArray = columnWithoudId.map((column) => row[column.accessorKey]);
+      let rowString = rowArray.join(",");
+      csvContent += rowString + "\r\n";
+    });
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "table_data.csv");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const handleFilterChange = (filter) => {
+    setColumnFilters((prev) => {
+      const existingFilter = prev.find((f) => f.id === "type");
+      const newFilterValue = existingFilter ? existingFilter.value : [];
+      if (newFilterValue.includes(filter)) {
+        return prev.map((f) =>
+          f.id === "type"
+            ? { ...f, value: newFilterValue.filter((v) => v !== filter) }
+            : f
+        );
+      } else {
+        return prev
+          .map((f) =>
+            f.id === "type" ? { ...f, value: [...newFilterValue, filter] } : f
+          )
+          .concat(!existingFilter ? [{ id: "type", value: [filter] }] : []);
+      }
+    });
+  };
+
+  return (
+    <div className="w-full">
+      <div className="flex items-center py-4">
+        <Input
+          placeholder="Filter name..."
+          value={(table.getColumn("name")?.getFilterValue()) ?? ""}
+          onChange={(event) =>{
+            table.getColumn("name")?.setFilterValue(event.target.value);
+            console.log("get")
+          }
+           
+          }
+          className="max-w-sm"
+        />
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline" className="ml-auto">
+              Columns <ChevronDown className="ml-2 h-4 w-4" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            {filterOptions.map((option) => (
+              <DropdownMenuCheckboxItem
+                key={option}
+                className="capitalize"
+                checked={
+                  columnFilters.find((f) => f.id === "type")?.value.includes(option)
+                }
+                onCheckedChange={() => handleFilterChange(option)}
+              >
+                {option}
+              </DropdownMenuCheckboxItem>
+            ))}
+          </DropdownMenuContent>
+        </DropdownMenu>
+        <Button variant="outline" onClick={handleExport} className="ml-4">
+          Export
+        </Button>
+      </div>
+      <div className="rounded-md border lg:h-[45vh]">
+        <Table>
+          <TableHeader>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <TableRow key={headerGroup.id}>
+                {headerGroup.headers.map((header) => (
+                  <TableHead key={header.id}>
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                  </TableHead>
+                ))}
+              </TableRow>
+            ))}
+          </TableHeader>
+          <TableBody>
+            {table.getRowModel().rows?.length ? (
+              table.getRowModel().rows.map((row) => (
+                <TableRow
+                  key={row.id}
+                  data-state={row.getIsSelected() && "selected"}
+                >
+                  {row.getVisibleCells().map((cell) => (
+                    <TableCell key={cell.id}>
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell colSpan={columnWithoudId.length} className="h-24 text-center">
+                  No results.
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </div>
+      <div className="flex items-center justify-end space-x-2 py-4">
+        <span>
+          Page{" "}
+          <strong>
+            {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
+          </strong>{" "}
+        </span>
+        <div className="space-x-2">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => table.previousPage()}
+            disabled={!table.getCanPreviousPage()}
+          >
+            Previous
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => table.nextPage()}
+            disabled={!table.getCanNextPage()}
+          >
+            Next
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default CustomTable;
