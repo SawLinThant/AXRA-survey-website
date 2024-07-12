@@ -4,15 +4,15 @@ import CustomSquare from "@/components/square";
 const Survey = () => {
   const dummyUsers = [
     {
-      userType: "Partner",
-      count: "1",
-    },
-    {
-      userType: "Job",
+      userType: "Job Seeking",
       count: "2",
     },
     {
-      userType: "Service",
+      userType: "Partnership",
+      count: "1",
+    },
+    {
+      userType: "Services",
       count: "4",
     },
   ];
