@@ -19,10 +19,15 @@ module.exports = {
     extend: {
       colors: {
         border: "hsl(var(--border))",
+        form_border: "#FFFFFF",
+        background_color: "#FFFBFD",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        headercolor: '#333333CC',
+        company_pink: "#E75F80",
+        company_purple: "#72428A",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -51,6 +56,15 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+      },
+     
+      boxShadow:{
+         radio_box: "0px 4px 10px 0px rgba(221, 221, 221, 0.4)",
+      },
+
+      fontFamily: {
+        Lato: ["Lato"],
+        Inter: ["Inter"]
       },
       borderRadius: {
         lg: "var(--radius)",

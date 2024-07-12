@@ -1,7 +1,6 @@
-import { useState } from 'react'
 import { Routes,Route } from 'react-router-dom'
 import Dashboard from './pages/Dashboard'
-import CustomTable from './components/customtable'
+import Form from './pages/Form'
 
 function App() {
 
@@ -9,6 +8,7 @@ function App() {
     <>
       <Routes>
         <Route path='/Dashboard/*' element={<Dashboard/>} />
+        <Route path='/Form/*' element={<Form/>} />
       </Routes>
     </>
   )
