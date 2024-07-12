@@ -11,17 +11,18 @@ import Login from "./pages/Login";
 
 function App() {
   const [isLogin, setIsLogin] = useState(false);
+  const user = JSON.parse(localStorage.getItem("user"));
 
-  const ProtecedRoutes = () => {
-    return isLogin ? <Outlet /> : <Navigate to="/login" />;
+  const ProtectedRoutes = () => {
+    return !isLogin && !user ? <Navigate to="/login" /> : <Outlet />;
   };
 
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login setIsLogin={setIsLogin} />} />
-        <Route element={<ProtecedRoutes />}>
-          <Route path="/Dashboard" element={<Dashboard isLogin={isLogin} />} />
+        <Route element={<ProtectedRoutes />}>
+          <Route path="/" element={<Dashboard />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -40,7 +40,8 @@ const Login = ({ setIsLogin }) => {
       });
     } else {
       setIsLogin(true);
-      navigate("/Dashboard");
+      navigate("/");
+      localStorage.setItem("user", JSON.stringify(userData));
     }
   };
 
