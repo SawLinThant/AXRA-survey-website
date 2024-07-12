@@ -1,26 +1,40 @@
 import CustomTable from "@/components/customtable";
 import CustomSquare from "@/components/square";
+import { GET_AVG_COUNTS } from "@/graphql/queries/userQueries";
+import { useQuery } from "@apollo/client";
 
 const Survey = () => {
-  const dummyUsers = [
+  const { data, error, loading } = useQuery(GET_AVG_COUNTS);
+
+  if (loading) return "Loading...";
+  if (error) return "Fail to get users!";
+
+  const { client_aggregate, job_seeker_aggregate, partner_aggregate } = data;
+
+  const avgUsers = [
     {
       userType: "Job Seeking",
-      count: "2",
+      count: job_seeker_aggregate?.aggregate?.count,
     },
     {
       userType: "Partnership",
-      count: "1",
+      count: partner_aggregate?.aggregate?.count,
     },
     {
       userType: "Services",
-      count: "4",
+      count: client_aggregate?.aggregate?.count,
     },
   ];
+
   return (
     <div className="w-full h-screen flex flex-col p-10">
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {dummyUsers.map((user) => (
-          <CustomSquare count={user.count} userType={user.userType} />
+        {avgUsers.map((user) => (
+          <CustomSquare
+            key={Math.random()}
+            count={user.count}
+            userType={user.userType}
+          />
         ))}
       </div>
       <CustomTable />
