@@ -4,7 +4,7 @@ const SelectOption = () => {
   return (
     <div className="w-full h-full flex flex-col items-center">
       <div className="w-[300px] mt-[70px] px[40px] flex flex-col gap-[40px]">
-        <div className="w-full h-[204px] flex flex-col items-center justify-between">
+        <div className="w-full gap-[25px] flex flex-col items-center justify-between">
           <div className="w-[220px] h-10">
             <img
               src="/page-indicator/Page1.png"
@@ -17,7 +17,7 @@ const SelectOption = () => {
               <img src="/logo1.png" className="w-full h-full" />
             </div>
           </div>
-          <div className="w-full h-[24px] text-center">
+          <div className="w-full h-[24px] text-center leading-8">
             <h2 className="font-Lato text-[20px] font-normal text-headercolor">
               Please select an option: I am ...
             </h2>

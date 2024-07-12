@@ -1,6 +1,6 @@
 import { Routes,Route } from "react-router-dom";
 import Survey from "./survey";
-import CustomSidebar from "@/components/sidebar";
+import CustomSidebar from "@/components/Sidebar";
 import Users from "./user";
 
 const Dashboard = () => {

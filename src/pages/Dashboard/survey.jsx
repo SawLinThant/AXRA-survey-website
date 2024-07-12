@@ -1,5 +1,5 @@
-import CustomTable from "@/components/customtable";
-import CustomSquare from "@/components/square";
+import CustomTable from "@/components/CustomTable";
+import CustomSquare from "@/components/Square";
 
 const Survey = () => {
     const dummyUsers = [
