@@ -2,29 +2,41 @@ import CustomTable from "@/components/CustomTable";
 import CustomSquare from "@/components/Square";
 
 const Survey = () => {
-    const dummyUsers = [
-        {
-            userType: "Partner",
-            count: "1"
-        },
-        {
-            userType: "Job",
-            count: "2"
-        },
-        {
-            userType: "Service",
-            count: "4"
-        },
-    ]
-    return(
-        <div className="w-full h-screen flex flex-col p-10">
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                {dummyUsers.map((user) => (
-                    <CustomSquare count={user.count} userType={user.userType}/>
-                ))}
-            </div>
-            <CustomTable/>
-        </div>
-    )
-}
+  const { data, error, loading } = useQuery(GET_AVG_COUNTS);
+
+  if (loading) return "Loading...";
+  if (error) return "Fail to get users!";
+
+  const { client_aggregate, job_seeker_aggregate, partner_aggregate } = data;
+
+  const avgUsers = [
+    {
+      userType: "Job Seeking",
+      count: job_seeker_aggregate?.aggregate?.count,
+    },
+    {
+      userType: "Partnership",
+      count: partner_aggregate?.aggregate?.count,
+    },
+    {
+      userType: "Services",
+      count: client_aggregate?.aggregate?.count,
+    },
+  ];
+
+  return (
+    <div className="w-full h-screen flex flex-col p-10">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {avgUsers.map((user) => (
+          <CustomSquare
+            key={Math.random()}
+            count={user.count}
+            userType={user.userType}
+          />
+        ))}
+      </div>
+      <CustomTable />
+    </div>
+  );
+};
 export default Survey;
