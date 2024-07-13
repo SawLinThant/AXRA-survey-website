@@ -8,10 +8,12 @@ import Service from "./ServiceFinder/service"
 import ServiceInfoForm from "./ServiceFinder/service-info-form"
 import PartnerService from "./Partner/partner-service"
 import PartnerInfoForm from "./Partner/partner-infoform"
+import { OptionProvider } from "@/lib/context/option-context"
 
 const Form = () => {
     return(
-        <div className="w-full md:w-[53rem] h-[100vh] p-[22px] bg-background_color">
+        <OptionProvider>
+        <div className="w-full md:w-[53rem] h-full p-[22px] bg-background_color">
             <div className="w-full h-full rounded-[20px] border-[5px] border-form_border bg-background_color">
                 <Routes>
                     <Route path="*" element={<SplashScreen/>}/>
@@ -26,6 +28,7 @@ const Form = () => {
                 </Routes>
             </div>
         </div>
+        </OptionProvider>
     )
 }
 

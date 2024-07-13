@@ -1,4 +1,4 @@
-const InputField = ({ label, id, name, type = "text", onChange, value, placeholder }) => {
+const InputField = ({ label, id, name, type = "text", onChange, value, placeholder, register }) => {
     return(
         <div className="w-[300px] h-[60px] gap-[5px] flex flex-col">
 			<label htmlFor={id} className='block font-semibold font-Inter text-[12px]'>
@@ -9,6 +9,7 @@ const InputField = ({ label, id, name, type = "text", onChange, value, placehold
 				id={id}
 				type={type}
 				name={name}
+				{...register(name,{ required: `${name} is required `})}
 				value={value}
 				onChange={onChange}
                 placeholder={placeholder}

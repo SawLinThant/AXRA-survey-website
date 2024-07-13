@@ -1,13 +1,16 @@
 import InputField from "@/components/CustomInput";
-import { Input } from "@/components/ui/input";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { useForm } from "react-hook-form";
 
-const ServiceInfoForm= () => {
+const ServiceInfoForm = () => {
+  const {register,handleSubmit} = useForm();
+  const onSubmit = handleSubmit((credentials) => {
+
+  })
   const handleChange = () => {};
   return (
     <div className="w-full h-full flex flex-col items-center">
       <div className="w-[300px] mt-[70px] flex flex-col gap-[40px]">
-      <div className=" w-full gap-[25px] flex flex-col items-center justify-between">
+        <div className=" w-full gap-[25px] flex flex-col items-center justify-between">
           <div className="w-[220px] h-10">
             <img
               src="/page-indicator/Page3.png"
@@ -26,45 +29,52 @@ const ServiceInfoForm= () => {
             </h2>
           </div>
         </div>
-        <div className="w-full flex flex-col gap-[40px]">
-          <InputField
-            label="Name"
-            id="name"
-            name="name"
-            //  value={signUpData.username}
-            onChange={handleChange}
-            placeholder="Enter your name"
-          />
+        <form onSubmit={onSubmit}>
+          <div className="w-full flex flex-col gap-[40px]">
             <InputField
-            label="Company Name"
-            id="company-name"
-            name="company-name"
-            //  value={signUpData.username}
-            onChange={handleChange}
-            placeholder="Enter your Company Name"
-          />
-          <InputField
-            label="Contact Information"
-            id="phone"
-            name="phone"
-            //  value={signUpData.username}
-            onChange={handleChange}
-            placeholder="Enter your phone number"
-          />
-          <InputField
-            label="Your Business Type"
-            id="business"
-            name="business"
-            //  value={signUpData.username}
-            onChange={handleChange}
-            placeholder="Enter the type of your business"
-          />
-        </div>
-        <div className="w-full h-[80px] flex justify-center">
-          <button className="w-[100px] h-[40px] border rounded-[20px] bg-gradient-to-r from-company_pink to-company_purple text-[12px] font-Inter">
-            Submit
-          </button>
-        </div>
+              label="Name"
+              id="name"
+              name="name"
+              //  value={signUpData.username}
+              onChange={handleChange}
+              register={register}
+              placeholder="Enter your name"
+            />
+            <InputField
+              label="Company Name"
+              id="company-name"
+              name="company-name"
+              //  value={signUpData.username}
+              onChange={handleChange}
+              register={register}
+              placeholder="Enter your Company Name"
+            />
+            <InputField
+              label="Contact Information"
+              id="phone"
+              name="phone"
+              //  value={signUpData.username}
+              onChange={handleChange}
+              register={register}
+              placeholder="Enter your phone number"
+            />
+            <InputField
+              label="Your Business Type"
+              id="business"
+              name="business"
+              //  value={signUpData.username}
+              onChange={handleChange}
+              register={register}
+              placeholder="Enter the type of your business"
+            />
+          </div>
+          <div className="w-full h-[80px] flex flex-row items-center justify-center">
+            <button className="w-[100px] mt-4 h-[40px] border rounded-[20px] bg-gradient-to-r from-company_pink to-company_purple text-[12px] font-Inter">
+              Submit
+            </button>
+          </div>
+          <div className="h-[20px]"></div>
+        </form>
       </div>
     </div>
   );

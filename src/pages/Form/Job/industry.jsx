@@ -2,8 +2,17 @@ import CustomSelector from "@/components/Selector";
 import { options } from "@/config/options";
 import clsx from "clsx";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const IndustrySelector = () => {
+  const navigate = useNavigate();
+  const [isSelected,setIsSelected] = useState(false);
+  const handleClick = () => {
+    if(isSelected){
+      navigate("/Form/Jobinfoform");
+    }
+    else{console.log("need to select option")}
+  };
   return (
     <div className="w-full h-full flex flex-col items-center">
       <div className="w-[300px] mt-[70px] flex flex-col gap-[40px]">
@@ -22,16 +31,21 @@ const IndustrySelector = () => {
           </div>
           <div className="w-full h-[24px] text-center leading-8">
             <h2 className="font-Lato text-[20px] text-center h-full font-normal text-headercolor">
-            Select an industry of your interest:
+              Select an industry of your interest:
             </h2>
           </div>
         </div>
         <div className="w-full flex flex-col">
-          <CustomSelector options={options} displayLogo={true} other="Please specify the industry of your interest!" />
+          <CustomSelector
+            options={options}
+            displayLogo={true}
+            other="Please specify the industry of your interest!"
+            setIsSelected={setIsSelected}
+          />
         </div>
 
         <div className="w-full h-[80px] flex justify-center">
-          <button className="w-[100px] h-[40px] border rounded-[20px] bg-gradient-to-r from-company_pink to-company_purple text-[12px] font-Inter">
+          <button onClick={handleClick} className="w-[100px] h-[40px] border rounded-[20px] bg-gradient-to-r from-company_pink to-company_purple text-[12px] font-Inter">
             Next
           </button>
         </div>

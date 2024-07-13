@@ -1,6 +1,22 @@
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { useOption } from "@/lib/context/option-context";
+import { useNavigate } from "react-router-dom";
 
 const SelectOption = () => {
+  const {SelectOption, SelectIndustryAndService} = useOption();
+  const navigate =useNavigate()
+  const handleOptionChange = (selectedOption) => {
+    SelectOption(selectedOption)
+    SelectIndustryAndService("");
+    if (selectedOption === "job-seeker") {
+      navigate("/Form/Industry");
+    } else if (selectedOption === "customer") {
+      navigate("/Form/Services");
+    } else {
+      navigate("/Form/Partnerservice");
+    }
+  };
+
   return (
     <div className="w-full h-full flex flex-col items-center">
       <div className="w-[300px] mt-[70px] px[40px] flex flex-col gap-[40px]">
@@ -25,7 +41,7 @@ const SelectOption = () => {
         </div>
         <div className="w-full h-[196px]">
           <div className="h-full w-full">
-            <RadioGroup className="h-full w-full flex flex-col gap-4 " defaultValue="job-seeker">
+            <RadioGroup className="h-full w-full flex flex-col gap-4 " onValueChange = {handleOptionChange}>
               <div className="w-full h-1/3 flex flex-row items-center gap-[20px] px-[30px] py-[16px] rounded-[10px] shadow-radio_box">
                 <RadioGroupItem className="checked:bg-headercolor" value="job-seeker" id="job-seeker" />
                 <p className="text-[16px] font-Lato text-headercolor font-normal">A Job Seeker</p>

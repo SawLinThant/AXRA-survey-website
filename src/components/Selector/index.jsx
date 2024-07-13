@@ -1,10 +1,12 @@
 import clsx from "clsx";
 import { useState } from "react";
 import { Input } from "../ui/input";
+import { useOption } from "@/lib/context/option-context";
 
-const CustomSelector = ({ options, displayLogo = true, other }) => {
+const CustomSelector = ({ options, displayLogo = true, other, setIsSelected }) => {
   const [activeIndex, setActiveIndex] = useState();
   const [isOtherOption, setIsOtherOption] = useState(false);
+  const {SelectIndustryAndService, AddOtherOption} = useOption();
   return (
     <div className="w-full h-full flex flex-col justify-start gap-[20px]">
       {options.map((option, index) => (
@@ -29,6 +31,8 @@ const CustomSelector = ({ options, displayLogo = true, other }) => {
             )}
             onClick={() => {
               setActiveIndex(index);
+              setIsSelected(true);
+              SelectIndustryAndService(option.name);
               if (option.name === "Other") {
                 setIsOtherOption(true);
               } else {
@@ -60,6 +64,7 @@ const CustomSelector = ({ options, displayLogo = true, other }) => {
         <Input
           type="text"
           placeholder={other}
+          onChange = {(e) => AddOtherOption(e.target.value)}
           className="w-full h-full rounded-[10px] py-[10px] px-[20px]"
         />
       </div>

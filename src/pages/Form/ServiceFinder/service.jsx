@@ -1,7 +1,18 @@
 import CustomSelector from "@/components/Selector";
 import { services } from "@/config/service";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Service = () => {
+  const navigate = useNavigate();
+  const [isSelected, setIsSelected] = useState(false);
+  const handleClick = () => {
+    if (isSelected) {
+      navigate("/Form/Servicesinfoform");
+    } else {
+      console.log("need to select option");
+    }
+  };
   return (
     <div className="w-full h-full flex flex-col items-center">
       <div className="w-[300px] mt-[70px] flex flex-col gap-[40px]">
@@ -29,11 +40,15 @@ const Service = () => {
             options={services}
             displayLogo={false}
             other="Please specify the service you expect from us"
+            setIsSelected={setIsSelected}
           />
         </div>
 
         <div className="w-full h-[80px] flex justify-center">
-          <button className="w-[100px] h-[40px] border rounded-[20px] bg-gradient-to-r from-company_pink to-company_purple text-[12px] font-Inter">
+          <button
+            onClick={handleClick}
+            className="w-[100px] h-[40px] border rounded-[20px] bg-gradient-to-r from-company_pink to-company_purple text-[12px] font-Inter"
+          >
             Next
           </button>
         </div>
