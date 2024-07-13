@@ -1,5 +1,7 @@
 import CustomTable from "@/components/CustomTable";
 import CustomSquare from "@/components/Square";
+import { useQuery } from "@apollo/client";
+import { GET_AVG_COUNTS } from "@/graphql/queries/userQueries";
 
 const Survey = () => {
   const { data, error, loading } = useQuery(GET_AVG_COUNTS);
