@@ -15,7 +15,9 @@ const SplashScreen = () => {
           </h2>
           <p className="text-[16px] font-Lato text-headercolor font-light">
             Thanks for joining our survey. Your input matters.{" "}
-            <Link to="Selectoptions">Let’s get started!</Link>
+            <Link to="Selectoptions" className="underline">
+              Let’s get started!
+            </Link>
           </p>
         </div>
       </div>

@@ -1,5 +1,4 @@
 import InputField from "@/components/CustomInput";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { CREATE_PARTNER } from "@/graphql/mutations/formMutation";
 import { useOption } from "@/lib/context/option-context";
 import { useMutation } from "@apollo/client";
@@ -13,20 +12,20 @@ const PartnerInfoForm = () => {
   const navigate = useNavigate();
   const onSubmit = handleSubmit(async (credentials) => {
     try {
-      console.log(industryAndService)
-        await CreatePartner({
-         variables:{
-           name: credentials.name,
-           content_infromation: credentials.phone,
-           user_type: option,
-           business_type: credentials.business,
-           why_partner: credentials.reason,
-           offer: credentials.offer,
-           service_type: industryAndService
-         }
-       })
+      console.log(industryAndService);
+      await CreatePartner({
+        variables: {
+          name: credentials.name,
+          content_infromation: credentials.phone,
+          user_type: option,
+          business_type: credentials.business,
+          why_partner: credentials.reason,
+          offer: credentials.offer,
+          service_type: industryAndService,
+        },
+      });
       console.log("Partner created");
-      navigate("Thankyou");
+      navigate("/Form/Thankyou");
     } catch (err) {
       throw new Error("Error creating partner");
     }

@@ -1,8 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
-import { useReactTable } from "@tanstack/react-table";
-import { getCoreRowModel,getPaginationRowModel,getFilteredRowModel } from "@tanstack/react-table";
-import { flexRender } from "@tanstack/react-table";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -18,9 +14,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { columnWithoudId } from "./column.jsx";
-import { ChevronDown } from "lucide-react";
-import { useQuery } from "@apollo/client";
 import { GET_USERS } from "@/graphql/queries/userQueries.js";
 import { useQuery } from "@apollo/client";
 import {
