@@ -5,9 +5,9 @@ export const columns = [
   },
   {
     accessorKey: "name",
-    header: "User Name or Company's Name",
+    header: "Name",
+    size: 50,
   },
-
   {
     accessorKey: "user_type",
     header: "Type",
@@ -28,8 +28,11 @@ export const columns = [
     cell: ({ cell }) => {
       const id = cell.row.original.id;
       return (
-        <a href={`/detail/${id}`} className="text-blue-500 hover:underline">
-          {"detail"}
+        <a
+          href={`/detail/${id}`}
+          className="text-blue-500 hover:underline capitalize"
+        >
+          {cell.getValue()}
         </a>
       );
     },

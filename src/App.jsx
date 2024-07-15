@@ -9,6 +9,7 @@ import {
 import Dashboard from "./pages/Dashboard";
 import Header from "./pages/Dashboard/Header";
 import DetailPage from "./pages/DetailPage";
+import Form from "./pages/Form";
 import Login from "./pages/Login";
 
 function App() {
@@ -29,6 +30,8 @@ function App() {
             <Route path="/detail/:id" element={<DetailPage />} />
           </Route>
         </Route>
+
+        <Route path="/form/*" element={<Form />} />
       </Routes>
     </BrowserRouter>
   );

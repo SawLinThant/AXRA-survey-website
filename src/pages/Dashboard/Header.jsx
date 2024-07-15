@@ -7,7 +7,7 @@ const Header = () => {
   const navigate = useNavigate();
   return (
     <>
-      <header className="px-10 py-1 flex items-center justify-between border-b-2">
+      <header className="px-10 dark:bg-background-dark dark:border-gray-700  bg-background_color py-1 flex items-center justify-between border-b-2">
         <img src="/public/logo.png" alt="" className="w-[65px]" />
         <div>
           <ModeToggle />

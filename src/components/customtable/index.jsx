@@ -14,6 +14,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { GET_USERS } from "@/graphql/queries/userQueries.js";
+import { useQuery } from "@apollo/client";
 import {
   flexRender,
   getCoreRowModel,
@@ -22,22 +24,42 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { ChevronDown } from "lucide-react";
-import { useState } from "react";
-import LoaderComponent from "../LoaderComponent";
-import { columnWithoudId } from "./column";
-import useTableData from "./useTableData";
+import { useMemo, useState } from "react";
+import LoaderComponent from "../LoaderComponent.jsx";
+import { columnWithoudId } from "./column.jsx";
 
 const CustomTable = () => {
-  const { error, loading, tableData } = useTableData();
+  //const [data, setData] = useState([...dummyData]);
+  const { data, loading, error } = useQuery(GET_USERS);
 
   const [columnFilters, setColumnFilters] = useState([]);
   const filterOptions = ["partner", "service", "job"];
   const [filter, setFilter] = useState("");
 
+  const userData = useMemo(() => {
+    if (!data || !data.user) return [];
+    return data.user.map((user) => ({
+      ...user,
+      detail: "detail",
+    }));
+  }, [data]);
+
+  const filteredData = useMemo(() => {
+    let filtered = userData;
+    const typeFilter = columnFilters.find((f) => f.id === "user_type");
+    if (typeFilter && typeFilter.value.length) {
+      filtered = filtered.filter((user) =>
+        typeFilter.value.includes(user.user_type)
+      );
+    }
+
+    return filtered;
+  }, [userData, filter, columnFilters]);
+
   const table = useReactTable({
-    data: tableData?.user,
+    data: filteredData,
     columns: columnWithoudId,
-    pageCount: Math.ceil(tableData?.user?.length / 5),
+    pageCount: Math.ceil(filteredData.length / 5),
     state: {
       columnFilters,
       globalFilter: filter,
@@ -95,7 +117,7 @@ const CustomTable = () => {
   };
 
   if (loading) return <LoaderComponent />;
-  if (error) return "Something went wrong!";
+  if (error) return "Fail to get users!";
 
   return (
     <div className="w-full">
@@ -131,8 +153,8 @@ const CustomTable = () => {
           Export
         </Button>
       </div>
-      <div className="rounded-md border lg:h-[45vh]">
-        <Table>
+      <div className="rounded-md border lg:h-[45vh] dark:border-gray-700">
+        <Table className="">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
@@ -157,7 +179,11 @@ const CustomTable = () => {
                   data-state={row.getIsSelected() && "selected"}
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id} className="capitalize">
+                    <TableCell
+                      key={cell.id}
+                      style={{ width: "100px" }}
+                      className="capitalize"
+                    >
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext()
