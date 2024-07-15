@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 const ThankYou = () => {
   return (
     <div className="w-full h-[100vh] flex justify-center items-center">
@@ -11,7 +9,7 @@ const ThankYou = () => {
         </div>
         <div className="w-full h-1/2 flex flex-col text-center justify-between">
           <h2 className="text-[1.25rem] text-headercolor font-normal font-Lato">
-            Welcome to Axra Tech
+            Thank You For Your Time!
           </h2>
           <p className="text-[16px] font-Lato text-headercolor font-light">
             We appreciate your input and will be in touch with you soon.
