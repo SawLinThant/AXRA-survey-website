@@ -1,4 +1,8 @@
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { useReactTable } from "@tanstack/react-table";
+import { getCoreRowModel,getPaginationRowModel,getFilteredRowModel } from "@tanstack/react-table";
+import { flexRender } from "@tanstack/react-table";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -16,15 +20,6 @@ import {
 } from "@/components/ui/table";
 import { columnWithoudId } from "./column.jsx";
 import { ChevronDown } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { dummyData } from "./data.js";
-import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { useQuery } from "@apollo/client";
 import { GET_USERS } from "@/graphql/queries/userQueries.js";
 import { useMemo } from "react";
