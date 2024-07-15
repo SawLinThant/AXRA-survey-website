@@ -30,3 +30,31 @@ export const GET_AVG_COUNTS = gql`
     }
   }
 `;
+
+export const GET_SINGLE_USER = gql`
+  query GetSingleUser($id: Int!) {
+    user_by_pk(id: $id) {
+      id
+      name
+      content_infromation
+      user_type
+      job_seekers {
+        isWorking
+        job_type
+        skills
+        eduction
+        working_industries
+      }
+      clients {
+        business_type
+        service_type
+      }
+      partners {
+        business_type
+        offer
+        service_type
+        why_partner
+      }
+    }
+  }
+`;

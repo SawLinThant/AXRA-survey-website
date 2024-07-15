@@ -1,8 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
-import { useReactTable } from "@tanstack/react-table";
-import { getCoreRowModel,getPaginationRowModel,getFilteredRowModel } from "@tanstack/react-table";
-import { flexRender } from "@tanstack/react-table";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -18,11 +14,19 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { columnWithoudId } from "./column.jsx";
-import { ChevronDown } from "lucide-react";
-import { useQuery } from "@apollo/client";
 import { GET_USERS } from "@/graphql/queries/userQueries.js";
-import { useMemo } from "react";
+import { useQuery } from "@apollo/client";
+import {
+  flexRender,
+  getCoreRowModel,
+  getFilteredRowModel,
+  getPaginationRowModel,
+  useReactTable,
+} from "@tanstack/react-table";
+import { ChevronDown } from "lucide-react";
+import { useMemo, useState } from "react";
+import LoaderComponent from "../LoaderComponent.jsx";
+import { columnWithoudId } from "./column.jsx";
 
 const CustomTable = () => {
   //const [data, setData] = useState([...dummyData]);
@@ -36,7 +40,7 @@ const CustomTable = () => {
     if (!data || !data.user) return [];
     return data.user.map((user) => ({
       ...user,
-      detail: "detail", 
+      detail: "detail",
     }));
   }, [data]);
 
@@ -112,7 +116,8 @@ const CustomTable = () => {
     });
   };
 
-  if (loading) <div>Loading Data</div>;
+  if (loading) return <LoaderComponent />;
+  if (error) return "Fail to get users!";
 
   return (
     <div className="w-full">
@@ -174,7 +179,11 @@ const CustomTable = () => {
                   data-state={row.getIsSelected() && "selected"}
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id} style={{ width: "100px" }}>
+                    <TableCell
+                      key={cell.id}
+                      style={{ width: "100px" }}
+                      className="capitalize"
+                    >
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext()

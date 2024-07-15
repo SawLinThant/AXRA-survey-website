@@ -6,7 +6,7 @@ export const columns = [
   {
     accessorKey: "name",
     header: "Name",
-    size: 50
+    size: 50,
   },
   {
     accessorKey: "user_type",
@@ -28,7 +28,10 @@ export const columns = [
     cell: ({ cell }) => {
       const id = cell.row.original.id;
       return (
-        <a href={`/Dashboard/detail/${id}`} className="text-blue-500 hover:underline">
+        <a
+          href={`/detail/${id}`}
+          className="text-blue-500 hover:underline capitalize"
+        >
           {cell.getValue()}
         </a>
       );
@@ -36,4 +39,6 @@ export const columns = [
   },
 ];
 
-export const columnWithoudId = columns.filter((column) => column.accessorKey !== "id");
+export const columnWithoudId = columns.filter(
+  (column) => column.accessorKey !== "id"
+);
