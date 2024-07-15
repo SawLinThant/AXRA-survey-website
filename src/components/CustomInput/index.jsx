@@ -1,6 +1,6 @@
 const InputField = ({ label, id, name, type = "text", onChange, value, placeholder, register }) => {
     return(
-        <div className="w-[300px] h-[60px] gap-[5px] flex flex-col">
+        <div className="w-full md:w-[300px] lg:w-[300px] h-[60px] gap-[5px] flex flex-col">
 			<label htmlFor={id} className='block font-semibold font-Inter text-[12px]'>
 				{label}
 			</label>
