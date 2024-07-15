@@ -1,18 +1,40 @@
-import { useState } from 'react'
-import { Routes,Route } from 'react-router-dom'
-import Dashboard from './pages/Dashboard'
-import CustomTable from './components/customtable'
+import { useState } from "react";
+import {
+  BrowserRouter,
+  Navigate,
+  Outlet,
+  Route,
+  Routes,
+} from "react-router-dom";
+import Dashboard from "./pages/Dashboard";
+import Header from "./pages/Dashboard/Header";
+import DetailPage from "./pages/DetailPage";
+import Form from "./pages/Form";
+import Login from "./pages/Login";
 
 function App() {
+  const [isLogin, setIsLogin] = useState(false);
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  const ProtectedRoutes = () => {
+    return !isLogin && !user ? <Navigate to="/login" /> : <Outlet />;
+  };
 
   return (
-    <>
+    <BrowserRouter>
       <Routes>
-        <Route path='/Dashboard/*' element={<Dashboard/>} />
+        <Route path="/login" element={<Login setIsLogin={setIsLogin} />} />
+        <Route element={<ProtectedRoutes />}>
+          <Route path="/" element={<Header />}>
+            <Route index element={<Dashboard />} />
+            <Route path="/detail/:id" element={<DetailPage />} />
+          </Route>
+        </Route>
+
+        <Route path="/form/*" element={<Form />} />
       </Routes>
-    </>
-  )
+    </BrowserRouter>
+  );
 }
 
-export default App
-
+export default App;

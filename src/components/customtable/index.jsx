@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { Button } from "@/components/ui/button";
 import {
-  flexRender,
-  getCoreRowModel,
-  useReactTable,
-  getPaginationRowModel,
-  getFilteredRowModel,
-} from "@tanstack/react-table";
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Input } from "@/components/ui/input";
 import {
   Table,
   TableBody,
@@ -14,28 +14,52 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { columnWithoudId } from "./column.jsx";
-import { ChevronDown } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { dummyData } from "./data";
+import { GET_USERS } from "@/graphql/queries/userQueries.js";
+import { useQuery } from "@apollo/client";
 import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+  flexRender,
+  getCoreRowModel,
+  getFilteredRowModel,
+  getPaginationRowModel,
+  useReactTable,
+} from "@tanstack/react-table";
+import { ChevronDown } from "lucide-react";
+import { useMemo, useState } from "react";
+import LoaderComponent from "../LoaderComponent.jsx";
+import { columnWithoudId } from "./column.jsx";
 
 const CustomTable = () => {
-  const [data, setData] = useState([...dummyData]);
+  //const [data, setData] = useState([...dummyData]);
+  const { data, loading, error } = useQuery(GET_USERS);
+
   const [columnFilters, setColumnFilters] = useState([]);
   const filterOptions = ["partner", "service", "job"];
   const [filter, setFilter] = useState("");
 
+  const userData = useMemo(() => {
+    if (!data || !data.user) return [];
+    return data.user.map((user) => ({
+      ...user,
+      detail: "detail",
+    }));
+  }, [data]);
+
+  const filteredData = useMemo(() => {
+    let filtered = userData;
+    const typeFilter = columnFilters.find((f) => f.id === "user_type");
+    if (typeFilter && typeFilter.value.length) {
+      filtered = filtered.filter((user) =>
+        typeFilter.value.includes(user.user_type)
+      );
+    }
+
+    return filtered;
+  }, [userData, filter, columnFilters]);
+
   const table = useReactTable({
-    data,
+    data: filteredData,
     columns: columnWithoudId,
-    pageCount: Math.ceil(data.length / 5),
+    pageCount: Math.ceil(filteredData.length / 5),
     state: {
       columnFilters,
       globalFilter: filter,
@@ -70,23 +94,30 @@ const CustomTable = () => {
 
   const handleFilterChange = (filter) => {
     setColumnFilters((prev) => {
-      const existingFilter = prev.find((f) => f.id === "type");
+      const existingFilter = prev.find((f) => f.id === "user_type");
       const newFilterValue = existingFilter ? existingFilter.value : [];
       if (newFilterValue.includes(filter)) {
         return prev.map((f) =>
-          f.id === "type"
+          f.id === "user_type"
             ? { ...f, value: newFilterValue.filter((v) => v !== filter) }
             : f
         );
       } else {
         return prev
           .map((f) =>
-            f.id === "type" ? { ...f, value: [...newFilterValue, filter] } : f
+            f.id === "user_type"
+              ? { ...f, value: [...newFilterValue, filter] }
+              : f
           )
-          .concat(!existingFilter ? [{ id: "type", value: [filter] }] : []);
+          .concat(
+            !existingFilter ? [{ id: "user_type", value: [filter] }] : []
+          );
       }
     });
   };
+
+  if (loading) return <LoaderComponent />;
+  if (error) return "Fail to get users!";
 
   return (
     <div className="w-full">
@@ -109,7 +140,7 @@ const CustomTable = () => {
                 key={option}
                 className="capitalize"
                 checked={columnFilters
-                  .find((f) => f.id === "type")
+                  .find((f) => f.id === "user_type")
                   ?.value.includes(option)}
                 onCheckedChange={() => handleFilterChange(option)}
               >
@@ -122,8 +153,8 @@ const CustomTable = () => {
           Export
         </Button>
       </div>
-      <div className="rounded-md border lg:h-[45vh]">
-        <Table>
+      <div className="rounded-md border lg:h-[45vh] dark:border-gray-700">
+        <Table className="">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
@@ -148,7 +179,11 @@ const CustomTable = () => {
                   data-state={row.getIsSelected() && "selected"}
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
+                    <TableCell
+                      key={cell.id}
+                      style={{ width: "100px" }}
+                      className="capitalize"
+                    >
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext()
