@@ -23,7 +23,10 @@ export const theme = {
       background_color: "#FFFBFD",
       input: "hsl(var(--input))",
       ring: "hsl(var(--ring))",
-      background: "hsl(var(--background))",
+      background: {
+        DEFAULT: "hsl(var(--background))",
+        dark: "#191125", // Custom dark mode background color
+      },
       foreground: "hsl(var(--foreground))",
       headercolor: '#333333CC',
       company_pink: "#E75F80",

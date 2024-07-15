@@ -27,7 +27,7 @@ const Survey = () => {
   ];
 
   return (
-    <div className="w-full h-screen flex flex-col p-10">
+    <div className="w-full h-screen flex flex-col p-10 bg-background_color dark:bg-background-dark">
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {avgUsers.map((user) => (
           <CustomSquare
