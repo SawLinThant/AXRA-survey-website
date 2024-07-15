@@ -23,6 +23,7 @@ import {
 } from "@tanstack/react-table";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
+import LoaderComponent from "../LoaderComponent";
 import { columnWithoudId } from "./column";
 import useTableData from "./useTableData";
 
@@ -93,7 +94,7 @@ const CustomTable = () => {
     });
   };
 
-  if (loading) return "Loading...";
+  if (loading) return <LoaderComponent />;
   if (error) return "Something went wrong!";
 
   return (

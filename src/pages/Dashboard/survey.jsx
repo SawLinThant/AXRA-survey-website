@@ -1,4 +1,5 @@
 import CustomTable from "@/components/customtable";
+import LoaderComponent from "@/components/LoaderComponent";
 import CustomSquare from "@/components/square";
 import { GET_AVG_COUNTS } from "@/graphql/queries/userQueries";
 import { useQuery } from "@apollo/client";
@@ -6,7 +7,7 @@ import { useQuery } from "@apollo/client";
 const Survey = () => {
   const { data, error, loading } = useQuery(GET_AVG_COUNTS);
 
-  if (loading) return "Loading...";
+  if (loading) return <LoaderComponent />;
   if (error) return "Fail to get users!";
 
   const { client_aggregate, job_seeker_aggregate, partner_aggregate } = data;

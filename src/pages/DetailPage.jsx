@@ -1,3 +1,4 @@
+import LoaderComponent from "@/components/LoaderComponent";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -15,7 +16,7 @@ const DetailPage = () => {
 
   const navigate = useNavigate();
 
-  if (loading) return "Loading...";
+  if (loading) return <LoaderComponent />;
   if (error) return "Fail to get user";
 
   const user = data.user_by_pk;
