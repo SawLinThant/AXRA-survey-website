@@ -29,9 +29,6 @@ import useTableData from "./useTableData";
 const CustomTable = () => {
   const { error, loading, tableData } = useTableData();
 
-  // const [data, setData] = useState(
-  //   tableData && tableData.user && tableData.user
-  // );
   const [columnFilters, setColumnFilters] = useState([]);
   const filterOptions = ["partner", "service", "job"];
   const [filter, setFilter] = useState("");

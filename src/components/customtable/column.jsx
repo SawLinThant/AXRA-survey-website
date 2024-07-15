@@ -29,7 +29,7 @@ export const columns = [
       const id = cell.row.original.id;
       return (
         <a href={`/detail/${id}`} className="text-blue-500 hover:underline">
-          {cell.getValue()}
+          {"detail"}
         </a>
       );
     },
