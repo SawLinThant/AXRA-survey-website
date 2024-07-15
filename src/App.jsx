@@ -7,6 +7,8 @@ import {
   Routes,
 } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
+import Header from "./pages/Dashboard/Header";
+import DetailPage from "./pages/DetailPage";
 import Login from "./pages/Login";
 
 function App() {
@@ -22,7 +24,10 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login setIsLogin={setIsLogin} />} />
         <Route element={<ProtectedRoutes />}>
-          <Route path="/" element={<Dashboard />} />
+          <Route path="/" element={<Header />}>
+            <Route index element={<Dashboard />} />
+            <Route path="/detail/:id" element={<DetailPage />} />
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>

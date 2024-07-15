@@ -1,10 +1,8 @@
-import Header from "./Header";
 import Survey from "./survey";
 
 const Dashboard = () => {
   return (
     <>
-      <Header />
       <Survey />
       {/* <CustomSidebar /> */}
       {/* <Routes>
