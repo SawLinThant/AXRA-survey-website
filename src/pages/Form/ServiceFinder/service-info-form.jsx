@@ -1,10 +1,31 @@
 import InputField from "@/components/CustomInput";
 import { useForm } from "react-hook-form";
+import { useOption } from "@/lib/context/option-context";
+import { useMutation } from "@apollo/client";
+import { CREATE_SERVICE } from "@/graphql/mutations/formMutation";
+import { useNavigate } from "react-router-dom";
 
 const ServiceInfoForm = () => {
   const {register,handleSubmit} = useForm();
-  const onSubmit = handleSubmit((credentials) => {
-
+  const {option,industryAndService} = useOption();
+  const [CreateService] = useMutation(CREATE_SERVICE);
+  const navigate = useNavigate();
+  const onSubmit = handleSubmit(async(credentials) => {
+    try{
+      await CreateService({
+       variables:{
+         name: credentials.name,
+         content_infromation: credentials.phone,
+         user_type: option, 
+         service_type: industryAndService,
+         business_type: credentials.business
+       }
+     })
+     console.log("service created");
+     navigate("Thankyou");
+   }catch(err){
+     throw new Error("Error creating new data")
+   }
   })
   const handleChange = () => {};
   return (
