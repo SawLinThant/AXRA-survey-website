@@ -1,15 +1,40 @@
 import InputField from "@/components/CustomInput";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { CREATE_PARTNER } from "@/graphql/mutations/formMutation";
+import { useOption } from "@/lib/context/option-context";
+import { useMutation } from "@apollo/client";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 const PartnerInfoForm = () => {
-  const {register,handleSubmit} = useForm();
-  const onSubmit = handleSubmit((credentials) => {
+  const { register, handleSubmit, formState } = useForm();
+  const { option, industryAndService } = useOption();
+  const [CreatePartner, { loading }] = useMutation(CREATE_PARTNER);
+  const navigate = useNavigate();
+  const onSubmit = handleSubmit(async (credentials) => {
+    try {
+      console.log(industryAndService)
+        await CreatePartner({
+         variables:{
+           name: credentials.name,
+           content_infromation: credentials.phone,
+           user_type: option,
+           business_type: credentials.business,
+           why_partner: credentials.reason,
+           offer: credentials.offer,
+           service_type: industryAndService
+         }
+       })
+      console.log("Partner created");
+      navigate("Thankyou");
+    } catch (err) {
+      throw new Error("Error creating partner");
+    }
+  });
 
-  })
-  const handleChange = () => {};
   return (
     <div className="w-full h-full flex flex-col items-center">
+      {formState.errors && <div>Error form</div>}
       <div className="w-[300px] mt-[70px] flex flex-col gap-[40px]">
         <div className=" w-full gap-[25px] flex flex-col items-center justify-between">
           <div className="w-[220px] h-10">
@@ -37,17 +62,13 @@ const PartnerInfoForm = () => {
               label="Name"
               id="name"
               name="name"
-              //  value={signUpData.username}
-              onChange={handleChange}
               register={register}
               placeholder="Enter your name"
             />
             <InputField
               label="Company Name"
-              id="company-name"
-              name="company-name"
-              //  value={signUpData.username}
-              onChange={handleChange}
+              id="company_name"
+              name="company_name"
               register={register}
               placeholder="Enter your Company Name"
             />
@@ -55,8 +76,6 @@ const PartnerInfoForm = () => {
               label="Contact Information"
               id="phone"
               name="phone"
-              //  value={signUpData.username}
-              onChange={handleChange}
               register={register}
               placeholder="Enter your phone number"
             />
@@ -64,8 +83,6 @@ const PartnerInfoForm = () => {
               label="Your Business Type"
               id="business"
               name="business"
-              //  value={signUpData.username}
-              onChange={handleChange}
               register={register}
               placeholder="Enter the type of your business"
             />
@@ -73,8 +90,6 @@ const PartnerInfoForm = () => {
               label="Why partner with us?"
               id="reason"
               name="reason"
-              //  value={signUpData.username}
-              onChange={handleChange}
               register={register}
               placeholder="Please share your reason with us"
             />
@@ -82,15 +97,16 @@ const PartnerInfoForm = () => {
               label="What can you offer to us?"
               id="offer"
               name="offer"
-              //  value={signUpData.username}
-              onChange={handleChange}
               register={register}
               placeholder="Please describe what you can offer us."
             />
           </div>
           <div className="w-full h-[80px] flex items-center justify-center">
-            <button className="w-[100px] mt-4 h-[40px] border rounded-[20px] bg-gradient-to-r from-company_pink to-company_purple text-[12px] font-Inter">
-              Submit
+            <button
+              type="submit"
+              className="w-[100px] mt-4 h-[40px] border rounded-[20px] bg-gradient-to-r from-company_pink to-company_purple text-[12px] font-Inter"
+            >
+              {loading ? "submiting" : "submit"}
             </button>
           </div>
           <div className="h-[20px]"></div>

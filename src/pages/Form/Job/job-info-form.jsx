@@ -1,10 +1,36 @@
 import InputField from "@/components/CustomInput";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { CREATE_JOB } from "@/graphql/mutations/formMutation";
+import { useOption } from "@/lib/context/option-context";
+import { useMutation } from "@apollo/client";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 const JobInfoForm = () => {
   const {register,handleSubmit} = useForm();
-  const onSubmit= handleSubmit((credentials)=> {}) ;
+  const {option,industryAndService} = useOption();
+  const [createJob] = useMutation(CREATE_JOB);
+  const navigate = useNavigate();
+  const onSubmit= handleSubmit(async(credentials)=> {
+    try{
+       await createJob({
+        variables:{
+          name: credentials.name,
+          contentInformation: credentials.phone,
+          user_type: option, 
+          job_type: industryAndService, 
+          eduction: credentials.education,
+          isWorking: credentials.employed === "Yes"? true : false,
+          working_industries: credentials.industry,
+          skills: credentials.skill,
+        }
+      })
+      console.log("Job created");
+      navigate("Thankyou");
+    }catch(err){
+      throw new Error("Error creating new data")
+    }
+  }) ;
   return (
     <div className="w-full h-full flex flex-col items-center">
       <div className="w-[300px] mt-[70px] flex flex-col gap-[40px]">
@@ -60,7 +86,7 @@ const JobInfoForm = () => {
             </p>
             <RadioGroup className="flex flex-row w-[108px] h-[20px] gap-[16px]"  defaultValue="No"  {...register("employed")}>
               <div className="flex flex-row gap-[5px]">
-                <RadioGroupItem value="Yes" id="No" />
+                <RadioGroupItem value="Yes" id="Yes" />
                 <p className="text-[12px] font-semibold font-Inter">Yes</p>
               </div>
               <div className="flex flex-row gap-[5px]">

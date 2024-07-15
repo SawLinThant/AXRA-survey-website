@@ -12,7 +12,7 @@ const apolloClient = createApolloClient();
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ApolloProvider client={apolloClient}>
-      <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      <ThemeProvider storageKey="vite-ui-theme">
         <App />
         <Toaster />
       </ThemeProvider>

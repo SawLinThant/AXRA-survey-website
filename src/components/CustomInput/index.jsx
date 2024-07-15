@@ -9,7 +9,7 @@ const InputField = ({ label, id, name, type = "text", onChange, value, placehold
 				id={id}
 				type={type}
 				name={name}
-				{...register(name,{ required: `${name} is required `})}
+				{...register(name)}
 				value={value}
 				onChange={onChange}
                 placeholder={placeholder}
