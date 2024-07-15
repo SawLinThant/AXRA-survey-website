@@ -21,14 +21,12 @@ const DetailPage = () => {
 
   const user = data.user_by_pk;
 
-  console.log(user);
-
   return (
     <div className="max-w-[60rem] my-[5rem] mx-auto">
       <Card>
         <CardHeader>
           <div className="flex justify-between items-center">
-            <Button onClick={() => navigate(-1)}>Back</Button>
+            <Button onClick={() => navigate("/")}>Back</Button>
             <Badge>
               {(user.user_type === "job" && "Job Seeking") ||
                 (user.user_type === "service" && "Service") ||
