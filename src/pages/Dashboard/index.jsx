@@ -1,13 +1,11 @@
 import Header from "./Header";
 import Survey from "./survey";
-import Users from "./user";
 
 const Dashboard = () => {
   return (
     <>
       <Header />
       <Survey />
-      <Users />
       {/* <CustomSidebar /> */}
       {/* <Routes>
           <Route path="*" element={<Survey />}></Route>
