@@ -36,6 +36,7 @@ const CustomSelector = ({ options, displayLogo = true, other, setIsSelected }) =
               if (option.name === "Other") {
                 setIsOtherOption(true);
               } else {
+                AddOtherOption("");
                 setIsOtherOption(false);
               }
             }}
@@ -64,7 +65,10 @@ const CustomSelector = ({ options, displayLogo = true, other, setIsSelected }) =
         <Input
           type="text"
           placeholder={other}
-          onChange = {(e) => AddOtherOption(e.target.value)}
+          onChange = {(e) => {
+            SelectIndustryAndService("");
+            AddOtherOption(e.target.value)
+          }}
           className="w-full h-full rounded-[10px] py-[10px] px-[20px]"
         />
       </div>
