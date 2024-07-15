@@ -53,7 +53,7 @@ const Login = ({ setIsLogin }) => {
           "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), url(/public/bg-image.jpg)",
       }}
     >
-      <div className="h-screen flex items-center justify-center ">
+      <div className="h-screen flex items-center justify-center p-4">
         <Card className="w-[500px] py-5">
           <CardHeader>
             <CardTitle>Login</CardTitle>

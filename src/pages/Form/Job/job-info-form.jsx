@@ -8,8 +8,10 @@ import { useNavigate } from "react-router-dom";
 
 const JobInfoForm = () => {
   const {register,handleSubmit} = useForm();
-  const {option,industryAndService,otherOption} = useOption();
-  const category = otherOption.length > 0 ? otherOption : industryAndService;
+  const {option,industryAndService,other} = useOption();
+  const category = (other && other.length > 0) ? other : industryAndService;
+  console.log(other)
+  console.log(category)
   const [createJob] = useMutation(CREATE_JOB);
   const navigate = useNavigate();
   const onSubmit = handleSubmit(async (credentials) => {

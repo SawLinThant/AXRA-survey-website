@@ -7,7 +7,8 @@ import { useNavigate } from "react-router-dom";
 
 const ServiceInfoForm = () => {
   const { register, handleSubmit } = useForm();
-  const { option, industryAndService } = useOption();
+  const { option, industryAndService, other } = useOption();
+  const category = (other && other.length > 0) ? other : industryAndService;
   const [CreateService] = useMutation(CREATE_SERVICE);
   const navigate = useNavigate();
   const onSubmit = handleSubmit(async (credentials) => {
@@ -17,7 +18,7 @@ const ServiceInfoForm = () => {
           name: credentials.name,
           content_infromation: credentials.phone,
           user_type: option,
-          service_type: industryAndService,
+          service_type: category,
           business_type: credentials.business,
         },
       });
