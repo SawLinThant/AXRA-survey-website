@@ -52,8 +52,7 @@ const PartnerInfoForm = () => {
           </div>
           <div className="w-full h-[90px] text-center leading-8">
             <h2 className="font-Lato text-[20px] text-center h-full font-normal text-headercolor ">
-              Thank you for your interest in partnering with us! We offer the
-              following services:
+              How can we reach you?
             </h2>
           </div>
         </div>

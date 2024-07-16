@@ -48,7 +48,7 @@ const ServiceInfoForm = () => {
           </div>
           <div className="w-full h-[60px] text-center leading-8">
             <h2 className="font-Lato text-[20px] text-clip h-full font-normal text-headercolor">
-              Thank you for considering us!Here are the services we offer:
+              How can we reach you?
             </h2>
           </div>
         </div>

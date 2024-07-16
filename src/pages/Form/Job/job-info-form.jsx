@@ -52,7 +52,7 @@ const JobInfoForm = () => {
           </div>
           <div className="w-full h-[24px] text-center leading-8">
             <h2 className="font-Lato text-[20px] text-center h-full font-normal text-headercolor">
-              Select an industry of your interest:
+            How can we reach you?
             </h2>
           </div>
         </div>
