@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { Loader2 } from "lucide-react";
 
 const PartnerInfoForm = () => {
-  const { register, handleSubmit, formState } = useForm();
+  const { register, handleSubmit } = useForm();
   const { option, industryAndService, other } = useOption();
   const category = other && other.length > 0 ? other : industryAndService;
   const [CreatePartner, { loading }] = useMutation(CREATE_PARTNER);

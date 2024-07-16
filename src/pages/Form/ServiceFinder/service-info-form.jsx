@@ -6,11 +6,12 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 const ServiceInfoForm = () => {
-  const { register, handleSubmit ,loading } = useForm();
+  const { register, handleSubmit } = useForm();
   const { option, industryAndService, other } = useOption();
   const category = other && other.length > 0 ? other : industryAndService;
-  const [CreateService] = useMutation(CREATE_SERVICE);
+  const [CreateService,{loading}] = useMutation(CREATE_SERVICE);
   const navigate = useNavigate();
+  console.log(loading)
   const onSubmit = handleSubmit(async (credentials) => {
     try {
       await CreateService({

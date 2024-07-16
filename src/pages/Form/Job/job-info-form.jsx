@@ -8,12 +8,12 @@ import { useNavigate } from "react-router-dom";
 import { Loader2 } from "lucide-react";
 
 const JobInfoForm = () => {
-  const {register,handleSubmit,loading} = useForm();
+  const {register,handleSubmit} = useForm();
   const {option,industryAndService,other} = useOption();
   const category = (other && other.length > 0) ? other : industryAndService;
   console.log(other)
   console.log(category)
-  const [createJob] = useMutation(CREATE_JOB);
+  const [createJob,{loading}] = useMutation(CREATE_JOB);
   const navigate = useNavigate();
   const onSubmit = handleSubmit(async (credentials) => {
     try {
