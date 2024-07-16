@@ -1,4 +1,4 @@
-import CustomSelector from "@/components/Selector";
+import CustomSelector from "@/components/selector";
 import { services } from "@/config/service";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";

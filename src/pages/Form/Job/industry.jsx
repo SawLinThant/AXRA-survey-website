@@ -1,4 +1,4 @@
-import CustomSelector from "@/components/Selector";
+import CustomSelector from "@/components/selector";
 import { options } from "@/config/options";
 import clsx from "clsx";
 import { useState } from "react";
