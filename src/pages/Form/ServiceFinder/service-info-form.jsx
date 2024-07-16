@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { Loader2 } from "lucide-react";
 
 const ServiceInfoForm = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, formState:{errors} } = useForm();
   const { option, industryAndService, other } = useOption();
   const category = other && other.length > 0 ? other : industryAndService;
   const [CreateService,{loading}] = useMutation(CREATE_SERVICE);
@@ -60,6 +60,7 @@ const ServiceInfoForm = () => {
               label="Name"
               id="name"
               name="name"
+              error={errors}
               //  value={signUpData.username}
               onChange={handleChange}
               register={register}
@@ -69,6 +70,7 @@ const ServiceInfoForm = () => {
               label="Company Name"
               id="company_name"
               name="company_name"
+              error={errors}
               //  value={signUpData.username}
               onChange={handleChange}
               register={register}
@@ -78,6 +80,7 @@ const ServiceInfoForm = () => {
               label="Contact Information"
               id="phone"
               name="phone"
+              error={errors}
               //  value={signUpData.username}
               onChange={handleChange}
               register={register}
@@ -87,6 +90,7 @@ const ServiceInfoForm = () => {
               label="Your Business Type"
               id="business"
               name="business"
+              error={errors}
               //  value={signUpData.username}
               onChange={handleChange}
               register={register}

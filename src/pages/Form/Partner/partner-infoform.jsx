@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { Loader2 } from "lucide-react";
 
 const PartnerInfoForm = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, formState:{errors} } = useForm();
   const { option, industryAndService, other } = useOption();
   const category = other && other.length > 0 ? other : industryAndService;
   const [CreatePartner, { loading }] = useMutation(CREATE_PARTNER);
@@ -62,6 +62,7 @@ const PartnerInfoForm = () => {
               label="Name"
               id="name"
               name="name"
+              error={errors}
               register={register}
               placeholder="Enter your name"
             />
@@ -69,6 +70,7 @@ const PartnerInfoForm = () => {
               label="Company Name"
               id="company_name"
               name="company_name"
+              error={errors}
               register={register}
               placeholder="Enter your Company Name"
             />
@@ -76,6 +78,7 @@ const PartnerInfoForm = () => {
               label="Contact Information"
               id="phone"
               name="phone"
+              error={errors}
               register={register}
               placeholder="Enter your phone number"
             />
@@ -83,6 +86,7 @@ const PartnerInfoForm = () => {
               label="Your Business Type"
               id="business"
               name="business"
+              error={errors}
               register={register}
               placeholder="Enter the type of your business"
             />
@@ -90,6 +94,7 @@ const PartnerInfoForm = () => {
               label="Why partner with us?"
               id="reason"
               name="reason"
+              error={errors}
               register={register}
               placeholder="Please share your reason with us"
             />
@@ -97,6 +102,7 @@ const PartnerInfoForm = () => {
               label="What can you offer to us?"
               id="offer"
               name="offer"
+              error={errors}
               register={register}
               placeholder="Please describe what you can offer us."
             />

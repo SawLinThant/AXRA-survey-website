@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { Loader2 } from "lucide-react";
 
 const JobInfoForm = () => {
-  const {register,handleSubmit} = useForm();
+  const {register,handleSubmit, formState: {errors}} = useForm();
   const {option,industryAndService,other} = useOption();
   const category = (other && other.length > 0) ? other : industryAndService;
   console.log(other)
@@ -64,14 +64,16 @@ const JobInfoForm = () => {
               id="name"
               name="name"
               //  value={signUpData.username}
+              error={errors}
               register={register}
               placeholder="Enter your name"
             />
             <InputField
-              label="Contact Information"
+              label="Phone Number"
               id="phone"
               name="phone"
               //  value={signUpData.username}
+              error={errors}
               register={register}
               placeholder="Enter your Phone Number"
             />
@@ -79,6 +81,7 @@ const JobInfoForm = () => {
               label="Education"
               id="education"
               name="education"
+              error={errors}
               //  value={signUpData.username}
               register={register}
               placeholder="Enter your highest education degree"
@@ -107,6 +110,7 @@ const JobInfoForm = () => {
               id="industry"
               name="username"
               //  value={signUpData.username}
+              error={errors}
               register={register}
               placeholder="E.g. Web Development, Sales & Marketing"
             />
@@ -115,6 +119,7 @@ const JobInfoForm = () => {
               id="skill"
               name="skill"
               //  value={signUpData.username}
+              error={errors}
               register={register}
               placeholder="E.g. Java, Python"
             />
