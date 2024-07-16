@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 const PartnerInfoForm = () => {
   const { register, handleSubmit, formState } = useForm();
   const { option, industryAndService, other } = useOption();
-  const category = (other && other.length > 0) ? other : industryAndService;
+  const category = other && other.length > 0 ? other : industryAndService;
   const [CreatePartner, { loading }] = useMutation(CREATE_PARTNER);
   const navigate = useNavigate();
   const onSubmit = handleSubmit(async (credentials) => {
@@ -17,6 +17,7 @@ const PartnerInfoForm = () => {
       await CreatePartner({
         variables: {
           name: credentials.name,
+          company_name: credentials.company_name,
           content_infromation: credentials.phone,
           user_type: option,
           business_type: credentials.business,

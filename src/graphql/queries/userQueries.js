@@ -2,9 +2,10 @@ import { gql } from "@apollo/client";
 
 export const GET_USERS = gql`
   query GetALLUsers {
-    user {
+    user(order_by: { created_at: desc }) {
       id
       name
+      company_name
       user_type
       content_infromation
     }
@@ -36,6 +37,7 @@ export const GET_SINGLE_USER = gql`
     user_by_pk(id: $id) {
       id
       name
+      company_name
       content_infromation
       user_type
       job_seekers {

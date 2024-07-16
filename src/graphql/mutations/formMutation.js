@@ -38,6 +38,7 @@ export const CREATE_JOB = gql`
 export const CREATE_SERVICE = gql`
   mutation CreateService(
     $name: String
+    $company_name: String
     $content_infromation: String
     $user_type: String
     $service_type: String
@@ -46,6 +47,7 @@ export const CREATE_SERVICE = gql`
     insert_user(
       objects: {
         name: $name
+        company_name: $company_name
         content_infromation: $content_infromation
         user_type: $user_type
         clients: {
@@ -61,6 +63,7 @@ export const CREATE_SERVICE = gql`
 export const CREATE_PARTNER = gql`
   mutation CreatePartner(
     $name: String
+    $company_name: String
     $content_infromation: String
     $user_type: String
     $business_type: String
@@ -71,6 +74,7 @@ export const CREATE_PARTNER = gql`
     insert_user(
       objects: {
         name: $name
+        company_name: $company_name
         content_infromation: $content_infromation
         user_type: $user_type
         partners: {

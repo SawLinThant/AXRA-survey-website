@@ -1,6 +1,15 @@
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const SplashScreen = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setTimeout(() => {
+      navigate("Selectoptions");
+    }, 2000);
+  }, []);
+
   return (
     <div className="w-full h-[100vh] flex justify-center items-center">
       <div className="w-[20rem] h-[13rem] flex flex-col">

@@ -41,6 +41,14 @@ const DetailPage = () => {
             <label className="text-sm text-slate-500">Name</label>
             <p>{user.name}</p>
           </div>
+          {user.company_name && (
+            <div>
+              <label className="text-sm text-slate-500">
+                Company&apos;s Name
+              </label>
+              <p>{user.company_name}</p>
+            </div>
+          )}
           <div>
             <label className="text-sm text-slate-500">
               Content Information

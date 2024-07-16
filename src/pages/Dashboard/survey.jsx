@@ -1,4 +1,4 @@
-import CustomTable from "@/components/CustomTable";
+import CustomTable from "@/components/customtable";
 import LoaderComponent from "@/components/LoaderComponent";
 import CustomSquare from "@/components/square";
 import { GET_AVG_COUNTS } from "@/graphql/queries/userQueries";

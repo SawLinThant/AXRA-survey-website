@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 const ServiceInfoForm = () => {
   const { register, handleSubmit } = useForm();
   const { option, industryAndService, other } = useOption();
-  const category = (other && other.length > 0) ? other : industryAndService;
+  const category = other && other.length > 0 ? other : industryAndService;
   const [CreateService] = useMutation(CREATE_SERVICE);
   const navigate = useNavigate();
   const onSubmit = handleSubmit(async (credentials) => {
@@ -16,6 +16,7 @@ const ServiceInfoForm = () => {
       await CreateService({
         variables: {
           name: credentials.name,
+          company_name: credentials.company_name,
           content_infromation: credentials.phone,
           user_type: option,
           service_type: category,
@@ -64,8 +65,8 @@ const ServiceInfoForm = () => {
             />
             <InputField
               label="Company Name"
-              id="company-name"
-              name="company-name"
+              id="company_name"
+              name="company_name"
               //  value={signUpData.username}
               onChange={handleChange}
               register={register}
