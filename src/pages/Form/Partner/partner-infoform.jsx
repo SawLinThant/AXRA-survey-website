@@ -4,6 +4,7 @@ import { useOption } from "@/lib/context/option-context";
 import { useMutation } from "@apollo/client";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { Loader2 } from "lucide-react";
 
 const PartnerInfoForm = () => {
   const { register, handleSubmit, formState } = useForm();
@@ -104,8 +105,10 @@ const PartnerInfoForm = () => {
           <div className="w-full h-[80px] flex items-center justify-center">
             <button
               type="submit"
-              className="w-[100px] mt-4 h-[40px] border rounded-[20px] bg-gradient-to-r from-company_pink to-company_purple text-[12px] font-Inter"
+              disabled={loading}
+              className="w-[100px] flex items-center justify-center mt-4 h-[40px] border rounded-[20px] bg-gradient-to-r from-company_pink to-company_purple text-[12px] font-Inter"
             >
+              {loading? (<Loader2 className="w-4 h-4 animate-spin mr-1.5" />): null}
               {loading ? "submiting" : "submit"}
             </button>
           </div>
