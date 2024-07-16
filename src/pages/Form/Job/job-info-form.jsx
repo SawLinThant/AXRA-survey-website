@@ -126,7 +126,7 @@ const JobInfoForm = () => {
               className="w-[100px] flex items-center justify-center mt-4 h-[40px] border rounded-[20px] bg-gradient-to-r from-company_pink to-company_purple text-[12px] font-Inter"
             >
               {loading? (<Loader2 className="w-4 h-4 animate-spin mr-1.5" />): null}
-              {loading ? "submiting..." : "submit"}
+              {loading ? "submiting" : "submit"}
             </button>
           </div>
           <div className="h-[20px]"></div>

@@ -36,7 +36,6 @@ const PartnerInfoForm = () => {
 
   return (
     <div className="w-full h-full flex flex-col items-center">
-      {formState.errors && <div>Error form</div>}
       <div className="w-[300px] mt-[70px] flex flex-col gap-[40px]">
         <div className=" w-full gap-[25px] flex flex-col items-center justify-between">
           <div className="w-[220px] h-10">
