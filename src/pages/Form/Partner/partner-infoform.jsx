@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 const PartnerInfoForm = () => {
   const { register, handleSubmit, formState } = useForm();
   const { option, industryAndService, other } = useOption();
-  const category = (other && other.length > 0) ? other : industryAndService;
+  const category = other && other.length > 0 ? other : industryAndService;
   const [CreatePartner, { loading }] = useMutation(CREATE_PARTNER);
   const navigate = useNavigate();
   const onSubmit = handleSubmit(async (credentials) => {
@@ -51,8 +51,7 @@ const PartnerInfoForm = () => {
           </div>
           <div className="w-full h-[90px] text-center leading-8">
             <h2 className="font-Lato text-[20px] text-center h-full font-normal text-headercolor ">
-              Thank you for your interest in partnering with us! We offer the
-              following services:
+              How can we reach you?
             </h2>
           </div>
         </div>

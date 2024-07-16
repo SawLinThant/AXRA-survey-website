@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 const ServiceInfoForm = () => {
   const { register, handleSubmit } = useForm();
   const { option, industryAndService, other } = useOption();
-  const category = (other && other.length > 0) ? other : industryAndService;
+  const category = other && other.length > 0 ? other : industryAndService;
   const [CreateService] = useMutation(CREATE_SERVICE);
   const navigate = useNavigate();
   const onSubmit = handleSubmit(async (credentials) => {
@@ -47,7 +47,7 @@ const ServiceInfoForm = () => {
           </div>
           <div className="w-full h-[60px] text-center leading-8">
             <h2 className="font-Lato text-[20px] text-clip h-full font-normal text-headercolor">
-              Thank you for considering us!Here are the services we offer:
+              How can we reach you?
             </h2>
           </div>
         </div>
