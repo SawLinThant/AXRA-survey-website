@@ -103,9 +103,10 @@ const PartnerInfoForm = () => {
           <div className="w-full h-[80px] flex items-center justify-center">
             <button
               type="submit"
+              disabled={loading}
               className="w-[100px] mt-4 h-[40px] border rounded-[20px] bg-gradient-to-r from-company_pink to-company_purple text-[12px] font-Inter"
             >
-              {loading ? "submiting" : "submit"}
+              {loading ? "submiting..." : "submit"}
             </button>
           </div>
           <div className="h-[20px]"></div>

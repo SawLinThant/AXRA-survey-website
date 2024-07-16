@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 const JobInfoForm = () => {
-  const {register,handleSubmit} = useForm();
+  const {register,handleSubmit,loading} = useForm();
   const {option,industryAndService,other} = useOption();
   const category = (other && other.length > 0) ? other : industryAndService;
   console.log(other)
@@ -121,9 +121,10 @@ const JobInfoForm = () => {
           <div className="w-full h-[80px] flex flex-row items-center justify-center">
             <button
               type="submit"
+              disabled={loading}
               className="w-[100px] mt-4 h-[40px] border rounded-[20px] bg-gradient-to-r from-company_pink to-company_purple text-[12px] font-Inter"
             >
-              Submit
+              {loading ? "submiting..." : "submit"}
             </button>
           </div>
           <div className="h-[20px]"></div>
