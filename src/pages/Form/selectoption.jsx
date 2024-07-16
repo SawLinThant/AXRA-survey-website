@@ -46,11 +46,11 @@ const SelectOption = () => {
                 <RadioGroupItem className="checked:bg-headercolor" value="job" id="job-seeker" />
                 <p className="text-[16px] font-Lato text-headercolor font-normal">A Job Seeker</p>
               </div>
-              <div onClick={() => handleOptionChange("service")} className="w-full h-1/3 border flex flex-row items-center gap-[20px] px-[30px] py-[16px] rounded-[10px] shadow-radio_box hover:cursor-pointer">
+              <div onClick={() => handleOptionChange("service")} className="w-full h-1/3 flex flex-row items-center gap-[20px] px-[30px] py-[16px] rounded-[10px] shadow-radio_box hover:cursor-pointer">
                 <RadioGroupItem className="checked:bg-headercolor" value="service" id="customer" />
                 <p className="text-[16px] font-Lato text-headercolor font-normal">A Customer</p>
               </div>
-              <div onClick={() => handleOptionChange("partner")} className="w-full h-1/3 border flex flex-row items-center gap-[20px] px-[30px] py-[16px] rounded-[10px] shadow-radio_box hover:cursor-pointer">
+              <div onClick={() => handleOptionChange("partner")} className="w-full h-1/3 flex flex-row items-center gap-[20px] px-[30px] py-[16px] rounded-[10px] shadow-radio_box hover:cursor-pointer">
                 <RadioGroupItem className="checked:bg-headercolor" value="partner" id="business-partner" />
                 <p className="text-[16px] font-Lato text-headercolor font-normal">A Business Partner</p>
               </div>
