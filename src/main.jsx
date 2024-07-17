@@ -12,10 +12,10 @@ const apolloClient = createApolloClient();
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ApolloProvider client={apolloClient}>
-      {/* <ThemeProvider storageKey="light"> */}
+      <ThemeProvider storageKey="light">
         <App />
         <Toaster />
-      {/* </ThemeProvider> */}
+      </ThemeProvider>
     </ApolloProvider>
   </React.StrictMode>
 );
