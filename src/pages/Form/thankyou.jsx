@@ -1,6 +1,6 @@
 const ThankYou = () => {
   return (
-    <div className="w-full flex justify-center items-center overflow-y-hidden min-h-screen">
+    <div className="w-full h-screen flex justify-center items-center overflow-y-hidden">
       <div className="w-[20rem] h-[13rem] flex flex-col">
         <div className="w-full h-1/2 flex flex-col justify-start items-center">
           <div className="w-[5rem] h-[5rem]">

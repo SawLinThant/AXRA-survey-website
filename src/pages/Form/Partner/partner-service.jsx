@@ -16,8 +16,8 @@ const PartnerService = () => {
     }
   };
   return (
-    <div className="w-full min-h-screen overflow-y-auto flex flex-col items-center ">
-      <div className="w-[300px] mt-[40px] flex flex-col gap-[40px]">
+    <div className="w-full h-screen overflow-y-auto flex flex-col items-center ">
+      <div className="w-[300px] mt-[40px] flex flex-col gap-[40px] ">
         <div className=" w-full gap-[25px] flex flex-col items-center justify-between">
           <div className="w-[220px] h-10">
             <img
@@ -26,7 +26,7 @@ const PartnerService = () => {
               className="w-full h-full"
             />
           </div>
-          <div className="w-full h-[90px] text-center leading-8">
+          <div className="w-full  text-center leading-8">
             <h2 className="font-Lato text-[20px] text-center h-full font-normal text-headercolor ">
             <p className="text-center font-Lato text-[20px] font-normal text-headercolor">Thank you for your interest in</p> 
             <p className="text-center font-Lato text-[20px] font-normal text-headercolor">partnering with us! </p> 
@@ -34,7 +34,7 @@ const PartnerService = () => {
             </h2>
           </div>
         </div>
-        <div className="w-full flex flex-col">
+        <div className="w-full h-[368px] flex flex-col">
           <CustomSelector
             options={services}
             displayLogo={true}
@@ -43,7 +43,7 @@ const PartnerService = () => {
           />
         </div>
 
-        { !isNext?<div className="w-full h-[15px] top-1 text-center">
+        { !isNext?<div className="w-full h-[15px] top-1 mt-[13px] text-center">
           <p className="font-Lato text-[12px] font-medium text-red-600">
           * Please select (at least) one option to submit the survey!
           </p>
