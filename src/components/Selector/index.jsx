@@ -4,19 +4,57 @@ import { Input } from "../ui/input";
 import { useOption } from "@/lib/context/option-context";
 
 const CustomSelector = ({ options, displayLogo = true, other, setIsSelected }) => {
-  const [activeIndex, setActiveIndex] = useState();
+  const [activeIndices, setActiveIndices] = useState([]);
   const [isOtherOption, setIsOtherOption] = useState(false);
+  const [otherValue, setOtherValue] = useState("");
   const {SelectIndustryAndService, AddOtherOption} = useOption();
+ 
+  console.log(activeIndices)
+
+  const handleOption = (option, index) => {
+    let updatedIndices = [];
+    if (option.name === "Others") {
+      setIsOtherOption(!isOtherOption);
+      if (activeIndices.includes(index)) {
+        updatedIndices = activeIndices.filter((i) => i !== index);
+      } else {
+        updatedIndices = [...activeIndices, index];
+      }
+    } else {
+      SelectIndustryAndService(option.name);
+      if (activeIndices.includes(index)) {
+        updatedIndices = activeIndices.filter((i) => i !== index);
+      } else {
+        updatedIndices = [...activeIndices, index];
+      }
+    }
+    setActiveIndices(updatedIndices);
+    setIsSelected(updatedIndices.length > 0);
+  };
+
+
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    if (otherValue.length > 1) {
+      setIsSelected(true);
+    }
+    else{
+        setIsSelected(false)
+    }
+    setOtherValue(value);
+    AddOtherOption(value);
+  };
+
   return (
     <div className="w-full h-full flex flex-col justify-start gap-[20px]">
       {options.map((option, index) => (
         <div
           key={index}
           className={clsx(
-            "w-full h-[70px] flex justify-center items-center rounded-[11px]",
+            "w-full h-[44px] flex justify-center items-center rounded-[11px]",
             {
               "bg-gradient-to-r from-company_purple to-company_pink":
-                activeIndex === index,
+               activeIndices.includes(index),
             }
           )}
         >
@@ -25,24 +63,14 @@ const CustomSelector = ({ options, displayLogo = true, other, setIsSelected }) =
               "w-full h-full gap-[20px] py-[10px] px-[20px] flex flex-row items-center border-[0.3px] rounded-[10px] z-10",
               {
                 "h-[calc(100%-2px)] w-[calc(100%-2px)] bg-white":
-                  activeIndex === index,
-                "border-transparent": activeIndex !== index,
+                activeIndices.includes(index),
+                "border-transparent": !activeIndices.includes(index),
               }
             )}
-            onClick={() => {
-              setActiveIndex(index);
-              setIsSelected(true);
-              SelectIndustryAndService(option.name);
-              if (option.name === "Other") {
-                setIsOtherOption(true);
-              } else {
-                AddOtherOption("");
-                setIsOtherOption(false);
-              }
-            }}
+            onClick={() => handleOption(option, index)}
           >
             {displayLogo && (
-              <div className="w-[50px] h-[50px]">
+              <div className="w-[25px] h-[20px]">
                 <img
                   className="w-full h-full"
                   src={option.image}

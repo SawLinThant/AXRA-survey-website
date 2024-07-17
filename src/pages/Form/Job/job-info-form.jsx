@@ -53,12 +53,12 @@ const JobInfoForm = () => {
           </div>
         </div>
         <form onSubmit={onSubmit}>
-          <div className="w-full flex flex-col gap-[40px]">
+          <div className="w-full flex flex-col gap-[35px]">
             <InputField
               label="Name"
               id="name"
               name="name"
-              //  value={signUpData.username}
+              requireSymbol="*"
               error={errors}
               register={register}
               placeholder="Enter your name"
@@ -67,7 +67,7 @@ const JobInfoForm = () => {
               label="Phone Number"
               id="phone"
               name="phone"
-              //  value={signUpData.username}
+               requireSymbol="*"
               error={errors}
               register={register}
               placeholder="Enter your Phone Number"
@@ -77,13 +77,12 @@ const JobInfoForm = () => {
               id="education"
               name="education"
               error={errors}
-              //  value={signUpData.username}
               register={register}
               placeholder="Enter your highest education degree"
             />
             <div className="w-full h-[51px] flex flex-col gap-[16px]">
               <p className="text-[12px] font-semibold font-Inter">
-                Currently Employed
+                Currently Employed?
               </p>
               <RadioGroup
                 className="flex flex-row w-[108px] h-[20px] gap-[16px]"
@@ -101,7 +100,7 @@ const JobInfoForm = () => {
               </RadioGroup>
             </div>
             <InputField
-              label="Current Industry Nature"
+              label="Interested Industry Nature"
               id="industry"
               name="username"
               //  value={signUpData.username}

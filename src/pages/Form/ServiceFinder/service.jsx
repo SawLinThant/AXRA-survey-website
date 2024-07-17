@@ -6,13 +6,16 @@ import { useNavigate } from "react-router-dom";
 const Service = () => {
   const navigate = useNavigate();
   const [isSelected, setIsSelected] = useState(false);
+  const [isNext, setIsNext] = useState(true)
   const handleClick = () => {
     if (isSelected) {
       navigate("/Form/Servicesinfoform");
     } else {
       console.log("need to select option");
+      setIsNext(false)
     }
   };
+  console.log(isSelected)
   return (
     <div className="w-full h-full flex flex-col items-center">
       <div className="w-[300px] mt-[70px] flex flex-col gap-[40px]">
@@ -24,11 +27,6 @@ const Service = () => {
               className="w-full h-full"
             />
           </div>
-          <div className="w-full h-[5rem] flex flex-col items-center justify-center">
-            <div className="h-full w-[5rem]  ">
-              <img src="/logo1.png" className="w-full h-full" />
-            </div>
-          </div>
           <div className="w-full h-[60px] text-center leading-8">
             <h2 className="font-Lato text-[20px] text-clip h-full font-normal text-headercolor">
               Thank you for considering us!Here are the services we offer:
@@ -38,11 +36,17 @@ const Service = () => {
         <div className="w-full flex flex-col">
           <CustomSelector
             options={services}
-            displayLogo={false}
+            displayLogo={true}
             other="Please specify the service you expect from us"
             setIsSelected={setIsSelected}
           />
         </div>
+
+        { !isNext?<div className="w-full h-[15px] top-1 text-center">
+          <p className="font-Lato text-[12px] font-medium text-red-600">
+          * Please select (at least) one option to submit the survey!
+          </p>
+        </div>: null}
 
         <div className="w-full h-[80px] flex justify-center">
           <button

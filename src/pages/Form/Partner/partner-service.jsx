@@ -6,11 +6,13 @@ import { useNavigate } from "react-router-dom";
 const PartnerService = () => {
   const navigate = useNavigate();
   const [isSelected, setIsSelected] = useState(false);
+  const [isNext, setIsNext] = useState(true)
   const handleClick = () => {
     if (isSelected) {
       navigate("/Form/Partnerinfoform");
     } else {
       console.log("need to select option");
+      setIsNext(false)
     }
   };
   return (
@@ -24,11 +26,6 @@ const PartnerService = () => {
               className="w-full h-full"
             />
           </div>
-          <div className="w-full h-[5rem] flex flex-col items-center justify-center">
-            <div className="h-full w-[5rem]  ">
-              <img src="/logo1.png" className="w-full h-full" />
-            </div>
-          </div>
           <div className="w-full h-[90px] text-center leading-8">
             <h2 className="font-Lato text-[20px] text-center h-full font-normal text-headercolor ">
               Thank you for your interest in partnering with us! We offer the
@@ -39,11 +36,17 @@ const PartnerService = () => {
         <div className="w-full flex flex-col">
           <CustomSelector
             options={services}
-            displayLogo={false}
+            displayLogo={true}
             other="Please specify the service you expect from us"
             setIsSelected={setIsSelected}
           />
         </div>
+
+        { !isNext?<div className="w-full h-[15px] top-1 text-center">
+          <p className="font-Lato text-[12px] font-medium text-red-600">
+          * Please select (at least) one option to submit the survey!
+          </p>
+        </div>: null}
 
         <div className="w-full h-[80px] flex justify-center">
           <button

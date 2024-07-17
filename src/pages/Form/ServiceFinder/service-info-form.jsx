@@ -31,7 +31,7 @@ const ServiceInfoForm = () => {
       throw new Error("Error creating new data");
     }
   });
-  const handleChange = () => {};
+
   return (
     <div className="w-full h-full flex flex-col items-center">
       <div className="w-[300px] mt-[70px] flex flex-col gap-[40px]">
@@ -56,44 +56,38 @@ const ServiceInfoForm = () => {
               id="name"
               name="name"
               error={errors}
-              //  value={signUpData.username}
-              onChange={handleChange}
               register={register}
               placeholder="Enter your name"
+              requireSymbol="*"
+            />
+               <InputField
+              label="Phone Number"
+              id="phone"
+              name="phone"
+              error={errors}
+              register={register}
+              placeholder="Enter your phone number"
+              requireSymbol="*"
             />
             <InputField
               label="Company Name"
               id="company_name"
               name="company_name"
               error={errors}
-              //  value={signUpData.username}
-              onChange={handleChange}
               register={register}
               placeholder="Enter your Company Name"
-            />
-            <InputField
-              label="Contact Information"
-              id="phone"
-              name="phone"
-              error={errors}
-              //  value={signUpData.username}
-              onChange={handleChange}
-              register={register}
-              placeholder="Enter your phone number"
-            />
+            />        
             <InputField
               label="Your Business Type"
               id="business"
               name="business"
               error={errors}
-              //  value={signUpData.username}
-              onChange={handleChange}
               register={register}
               placeholder="Enter the type of your business"
             />
           </div>
           <div className="w-full h-[80px] flex flex-row items-center justify-center">
-            <button disabled={loading} type="submit" className="w-[100px] flex items-center justify-center mt-4 h-[40px] border rounded-[20px] bg-gradient-to-r from-company_pink to-company_purple text-[12px] font-Inter">
+            <button disabled={loading} type="submit" className="w-[100px] flex items-center justify-center mt-8 h-[40px] border rounded-[20px] bg-gradient-to-r from-company_pink to-company_purple text-[12px] font-Inter">
             {loading? (<Loader2 className="w-4 h-4 animate-spin mr-1.5" />): null}
             {loading ? "submiting" : "submit"}
             </button>

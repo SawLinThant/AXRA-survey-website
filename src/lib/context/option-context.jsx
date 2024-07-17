@@ -4,16 +4,23 @@ export const OptionContext = createContext();
 
 export const OptionProvider = ({ children }) => {
   const [option, setOption] = useState("");
-  const [industryAndService, setIndustryAndService] = useState("");
+  const [industryAndService, setIndustryAndService] = useState([]);
   const [other, setOther] = useState("")
-
-  console.log("Industry selected:",industryAndService);
+   console.log("Other Option selected:",other);
+   console.log("Industry selected:",industryAndService);
+ // console.log("Other Option selected:",other);
   const SelectOption = (selectedOption) => {
     setOption(selectedOption);
   };
 
   const SelectIndustryAndService = (IndustyOrService) => {
-    setIndustryAndService(IndustyOrService);
+    setIndustryAndService((prev) => {
+      if(prev.includes(IndustyOrService)){
+        return prev.filter((item) => item !== IndustyOrService)
+      }else{
+        return [...prev,IndustyOrService]
+      }
+    });
   };
 
   const AddOtherOption = (other) => {

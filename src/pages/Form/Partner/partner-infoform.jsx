@@ -53,13 +53,23 @@ const PartnerInfoForm = () => {
         </div>
         <form onSubmit={onSubmit}>
           <div className="w-full flex flex-col gap-[40px]">
-            <InputField
+          <InputField
               label="Name"
               id="name"
               name="name"
               error={errors}
               register={register}
               placeholder="Enter your name"
+              requireSymbol="*"
+            />
+               <InputField
+              label="Phone Number"
+              id="phone"
+              name="phone"
+              error={errors}
+              register={register}
+              placeholder="Enter your phone number"
+              requireSymbol="*"
             />
             <InputField
               label="Company Name"
@@ -68,15 +78,7 @@ const PartnerInfoForm = () => {
               error={errors}
               register={register}
               placeholder="Enter your Company Name"
-            />
-            <InputField
-              label="Contact Information"
-              id="phone"
-              name="phone"
-              error={errors}
-              register={register}
-              placeholder="Enter your phone number"
-            />
+            />        
             <InputField
               label="Your Business Type"
               id="business"
@@ -84,22 +86,6 @@ const PartnerInfoForm = () => {
               error={errors}
               register={register}
               placeholder="Enter the type of your business"
-            />
-            <InputField
-              label="Why partner with us?"
-              id="reason"
-              name="reason"
-              error={errors}
-              register={register}
-              placeholder="Please share your reason with us"
-            />
-            <InputField
-              label="What can you offer to us?"
-              id="offer"
-              name="offer"
-              error={errors}
-              register={register}
-              placeholder="Please describe what you can offer us."
             />
           </div>
           <div className="w-full h-[80px] flex items-center justify-center">

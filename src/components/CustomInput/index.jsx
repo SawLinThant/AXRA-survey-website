@@ -12,6 +12,7 @@ const InputField = ({
   placeholder,
   register,
   error,
+  requireSymbol
 }) => {
   const hasError = get(error,name);
   const [focus, setFocus] = useState(false);
@@ -42,7 +43,7 @@ const InputField = ({
         className="font-semibold font-Inter text-[12px] flex flex-row"
       >
         {label}
-        {error ? <p className="text-red-700">*</p> : null}
+        {hasError ? <p className="text-red-700">*</p> : requireSymbol}
       </label>
       <input
         className={clsx(
