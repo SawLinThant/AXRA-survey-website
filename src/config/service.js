@@ -1,30 +1,30 @@
 export const services = [
     {
         name: "IOT Software Development",
-        image: ""
+        image: "/property/iot.png"
     },
     {
         name: "Web Development",
-        image: ""
+        image: "/property/Web.png"
     },
     {
         name: "Application Development",
-        image: ""
+        image: "/property/mobile.png"
     },
     {
         name: "System Integration",
-        image: ""
+        image: "/property/system.png"
     },
     {
         name: "SMS Solutions",
-        image: ""
+        image: "/property/sms.png"
     },
     {
         name: "Payment Solutions",
-        image: ""
+        image: "/property/payment.png"
     },
     {
-        name: "Other",
-        image: ""
+        name: "Others",
+        image: "/property/other2.png"
     },
 ]
