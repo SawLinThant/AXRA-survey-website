@@ -2,17 +2,21 @@ import InputField from "@/components/CustomInput";
 import { CREATE_SERVICE } from "@/graphql/mutations/formMutation";
 import { useOption } from "@/lib/context/option-context";
 import { useMutation } from "@apollo/client";
+import { Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { Loader2 } from "lucide-react";
 
 const ServiceInfoForm = () => {
-  const { register, handleSubmit, formState:{errors} } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const { option, industryAndService, other } = useOption();
   const category = other && other.length > 0 ? other : industryAndService;
-  const [CreateService,{loading}] = useMutation(CREATE_SERVICE);
+  const [CreateService, { loading }] = useMutation(CREATE_SERVICE);
   const navigate = useNavigate();
-  console.log(loading)
+  console.log(loading);
   const onSubmit = handleSubmit(async (credentials) => {
     try {
       await CreateService({
@@ -72,9 +76,10 @@ const ServiceInfoForm = () => {
               placeholder="Enter your Company Name"
             />
             <InputField
-              label="Contact Information"
+              label="Phone Number"
               id="phone"
               name="phone"
+              type="number"
               error={errors}
               //  value={signUpData.username}
               onChange={handleChange}
@@ -93,9 +98,15 @@ const ServiceInfoForm = () => {
             />
           </div>
           <div className="w-full h-[80px] flex flex-row items-center justify-center">
-            <button disabled={loading} type="submit" className="w-[100px] flex items-center justify-center mt-4 h-[40px] border rounded-[20px] bg-gradient-to-r from-company_pink to-company_purple text-[12px] font-Inter">
-            {loading? (<Loader2 className="w-4 h-4 animate-spin mr-1.5" />): null}
-            {loading ? "submiting" : "submit"}
+            <button
+              disabled={loading}
+              type="submit"
+              className="w-[100px] flex items-center justify-center mt-4 h-[40px] border rounded-[20px] bg-gradient-to-r from-company_pink to-company_purple text-[12px] font-Inter"
+            >
+              {loading ? (
+                <Loader2 className="w-4 h-4 animate-spin mr-1.5" />
+              ) : null}
+              {loading ? "submiting" : "submit"}
             </button>
           </div>
           <div className="h-[20px]"></div>

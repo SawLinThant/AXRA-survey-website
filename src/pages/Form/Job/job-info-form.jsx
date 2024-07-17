@@ -3,17 +3,22 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { CREATE_JOB } from "@/graphql/mutations/formMutation";
 import { useOption } from "@/lib/context/option-context";
 import { useMutation } from "@apollo/client";
+import { Loader2 } from "lucide-react";
+import myanmarPhoneNumber from "myanmar-phonenumber";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { Loader2 } from "lucide-react";
 
 const JobInfoForm = () => {
-  const {register,handleSubmit, formState: {errors}} = useForm();
-  const {option,industryAndService,other} = useOption();
-  const category = (other && other.length > 0) ? other : industryAndService;
-  console.log(other)
-  console.log(category)
-  const [createJob,{loading}] = useMutation(CREATE_JOB);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const { option, industryAndService, other } = useOption();
+  const category = other && other.length > 0 ? other : industryAndService;
+  console.log(other);
+  console.log(category);
+  const [createJob, { loading }] = useMutation(CREATE_JOB);
   const navigate = useNavigate();
   const onSubmit = handleSubmit(async (credentials) => {
     try {
@@ -21,8 +26,8 @@ const JobInfoForm = () => {
         variables: {
           name: credentials.name,
           contentInformation: credentials.phone,
-          user_type: option, 
-          job_type: category, 
+          user_type: option,
+          job_type: category,
           eduction: credentials.education,
           isWorking: credentials.employed === "Yes" ? true : false,
           working_industries: credentials.industry,
@@ -35,6 +40,9 @@ const JobInfoForm = () => {
       throw new Error("Error creating new data");
     }
   });
+
+  console.log(myanmarPhoneNumber.isValidMMPhoneNumber("+959787575012"));
+
   return (
     <div className="w-full h-full flex flex-col items-center">
       <div className="w-[300px] mt-[70px] flex flex-col gap-[40px]">
@@ -48,7 +56,7 @@ const JobInfoForm = () => {
           </div>
           <div className="w-full h-[24px] text-center leading-8">
             <h2 className="font-Lato text-[20px] text-center h-full font-normal text-headercolor">
-            How can we reach you?
+              How can we reach you?
             </h2>
           </div>
         </div>
@@ -67,6 +75,7 @@ const JobInfoForm = () => {
               label="Phone Number"
               id="phone"
               name="phone"
+              type="number"
               //  value={signUpData.username}
               error={errors}
               register={register}
@@ -125,7 +134,9 @@ const JobInfoForm = () => {
               disabled={loading}
               className="w-[100px] flex items-center justify-center mt-4 h-[40px] border rounded-[20px] bg-gradient-to-r from-company_pink to-company_purple text-[12px] font-Inter"
             >
-              {loading? (<Loader2 className="w-4 h-4 animate-spin mr-1.5" />): null}
+              {loading ? (
+                <Loader2 className="w-4 h-4 animate-spin mr-1.5" />
+              ) : null}
               {loading ? "submiting" : "submit"}
             </button>
           </div>

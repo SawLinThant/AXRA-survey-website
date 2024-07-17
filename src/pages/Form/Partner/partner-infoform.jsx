@@ -2,12 +2,16 @@ import InputField from "@/components/CustomInput";
 import { CREATE_PARTNER } from "@/graphql/mutations/formMutation";
 import { useOption } from "@/lib/context/option-context";
 import { useMutation } from "@apollo/client";
+import { Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { Loader2 } from "lucide-react";
 
 const PartnerInfoForm = () => {
-  const { register, handleSubmit, formState:{errors} } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const { option, industryAndService, other } = useOption();
   const category = other && other.length > 0 ? other : industryAndService;
   const [CreatePartner, { loading }] = useMutation(CREATE_PARTNER);
@@ -70,9 +74,10 @@ const PartnerInfoForm = () => {
               placeholder="Enter your Company Name"
             />
             <InputField
-              label="Contact Information"
+              label="Phone Number"
               id="phone"
               name="phone"
+              type="number"
               error={errors}
               register={register}
               placeholder="Enter your phone number"
@@ -108,7 +113,9 @@ const PartnerInfoForm = () => {
               disabled={loading}
               className="w-[100px] flex items-center justify-center mt-4 h-[40px] border rounded-[20px] bg-gradient-to-r from-company_pink to-company_purple text-[12px] font-Inter"
             >
-              {loading? (<Loader2 className="w-4 h-4 animate-spin mr-1.5" />): null}
+              {loading ? (
+                <Loader2 className="w-4 h-4 animate-spin mr-1.5" />
+              ) : null}
               {loading ? "submiting" : "submit"}
             </button>
           </div>
