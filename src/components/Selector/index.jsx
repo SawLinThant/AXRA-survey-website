@@ -53,7 +53,7 @@ const CustomSelector = ({ options, displayLogo = true, other, setIsSelected }) =
           className={clsx(
             "w-full h-[44px] flex justify-center items-center rounded-[11px]",
             {
-              "bg-gradient-to-r from-company_purple to-company_pink":
+              "bg-gradient-to-r from-company_purple to-company_pink dark:bg-pink-700":
                activeIndices.includes(index),
             }
           )}
