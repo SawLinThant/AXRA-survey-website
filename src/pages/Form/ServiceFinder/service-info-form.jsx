@@ -2,17 +2,21 @@ import InputField from "@/components/CustomInput";
 import { CREATE_SERVICE } from "@/graphql/mutations/formMutation";
 import { useOption } from "@/lib/context/option-context";
 import { useMutation } from "@apollo/client";
+import { Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { Loader2 } from "lucide-react";
 
 const ServiceInfoForm = () => {
-  const { register, handleSubmit, formState:{errors} } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const { option, industryAndService, other } = useOption();
   const category = other && other.length > 0 ? other : industryAndService;
-  const [CreateService,{loading}] = useMutation(CREATE_SERVICE);
+  const [CreateService, { loading }] = useMutation(CREATE_SERVICE);
   const navigate = useNavigate();
-  console.log(loading)
+  console.log(loading);
   const onSubmit = handleSubmit(async (credentials) => {
     try {
       await CreateService({
@@ -77,6 +81,18 @@ const ServiceInfoForm = () => {
               register={register}
               placeholder="Enter your Company Name"
             />        
+            
+            <InputField
+              label="Phone Number"
+              id="phone"
+              name="phone"
+              type="number"
+              error={errors}
+              //  value={signUpData.username}
+              onChange={handleChange}
+              register={register}
+              placeholder="Enter your phone number"
+            />
             <InputField
               label="Your Business Type"
               id="business"
