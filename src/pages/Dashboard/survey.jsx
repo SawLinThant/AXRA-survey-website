@@ -1,4 +1,4 @@
-import CustomTable from "@/components/customtable";
+import CustomTable from "@/components/customTable";
 import LoaderComponent from "@/components/LoaderComponent";
 import CustomSquare from "@/components/square";
 import { GET_AVG_COUNTS } from "@/graphql/queries/userQueries";
@@ -28,7 +28,7 @@ const Survey = () => {
   ];
 
   return (
-    <div className="w-full h-screen flex flex-col p-10 bg-background_color dark:bg-background-dark">
+    <div className="w-full h-screen flex flex-col p-10 bg-background_color">
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {avgUsers.map((user) => (
           <CustomSquare

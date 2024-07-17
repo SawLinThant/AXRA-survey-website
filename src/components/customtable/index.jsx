@@ -153,7 +153,7 @@ const CustomTable = () => {
           Export
         </Button>
       </div>
-      <div className="rounded-md border dark:border-gray-700">
+      <div className="rounded-md border">
         <Table className="">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
