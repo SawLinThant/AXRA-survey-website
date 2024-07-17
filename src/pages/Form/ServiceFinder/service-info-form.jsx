@@ -43,11 +43,6 @@ const ServiceInfoForm = () => {
               className="w-full h-full"
             />
           </div>
-          <div className="w-full h-[5rem] flex flex-col items-center justify-center">
-            <div className="h-full w-[5rem]  ">
-              <img src="/logo1.png" className="w-full h-full" />
-            </div>
-          </div>
           <div className="w-full h-[60px] text-center leading-8">
             <h2 className="font-Lato text-[20px] text-clip h-full font-normal text-headercolor">
               How can we reach you?
