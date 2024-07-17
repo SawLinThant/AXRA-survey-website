@@ -15,12 +15,17 @@ const JobInfoForm = () => {
     formState: { errors },
   } = useForm();
   const { option, industryAndService, other } = useOption();
-  const category = other && other.length > 0 ? other : industryAndService;
+
   console.log(other);
-  console.log(category);
   const [createJob, { loading }] = useMutation(CREATE_JOB);
   const navigate = useNavigate();
+
   const onSubmit = handleSubmit(async (credentials) => {
+    const categoryArray = [
+      ...(industryAndService || []),
+      ...(other ? [other] : []),
+    ];
+    const category = categoryArray.join(", ");
     try {
       await createJob({
         variables: {
@@ -45,7 +50,7 @@ const JobInfoForm = () => {
 
   return (
     <div className="w-full h-full flex flex-col items-center">
-      <div className="w-[300px] mt-[70px] flex flex-col gap-[40px]">
+      <div className="w-[300px] mt-[40px] flex flex-col gap-[40px]">
         <div className=" w-full gap-[25px] flex flex-col items-center justify-between">
           <div className="w-[220px] h-10">
             <img
@@ -74,8 +79,9 @@ const JobInfoForm = () => {
             <InputField
               label="Phone Number"
               id="phone"
+              type="number"
               name="phone"
-               requireSymbol="*"
+              requireSymbol="*"
               error={errors}
               register={register}
               placeholder="Enter your Phone Number"

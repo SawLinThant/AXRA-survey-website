@@ -13,12 +13,15 @@ const PartnerInfoForm = () => {
     formState: { errors },
   } = useForm();
   const { option, industryAndService, other } = useOption();
-  const category = other && other.length > 0 ? other : industryAndService;
   const [CreatePartner, { loading }] = useMutation(CREATE_PARTNER);
   const navigate = useNavigate();
   const onSubmit = handleSubmit(async (credentials) => {
     try {
-      console.log(industryAndService);
+      const categoryArray = [
+        ...(industryAndService || []),
+        ...(other ? [other] : []),
+      ];
+      const category = categoryArray.join(", ");
       await CreatePartner({
         variables: {
           name: credentials.name,
@@ -26,8 +29,8 @@ const PartnerInfoForm = () => {
           content_infromation: credentials.phone,
           user_type: option,
           business_type: credentials.business,
-          why_partner: credentials.reason,
-          offer: credentials.offer,
+          why_partner: "",
+          offer: "",
           service_type: category,
         },
       });
@@ -40,7 +43,7 @@ const PartnerInfoForm = () => {
 
   return (
     <div className="w-full h-full flex flex-col items-center">
-      <div className="w-[300px] mt-[70px] flex flex-col gap-[40px]">
+      <div className="w-[300px] mt-[40px] flex flex-col gap-[40px]">
         <div className=" w-full gap-[25px] flex flex-col items-center justify-between">
           <div className="w-[220px] h-10">
             <img
@@ -57,7 +60,7 @@ const PartnerInfoForm = () => {
         </div>
         <form onSubmit={onSubmit}>
           <div className="w-full flex flex-col gap-[40px]">
-          <InputField
+            <InputField
               label="Name"
               id="name"
               name="name"
@@ -66,10 +69,11 @@ const PartnerInfoForm = () => {
               placeholder="Enter your name"
               requireSymbol="*"
             />
-               <InputField
+            <InputField
               label="Phone Number"
               id="phone"
               name="phone"
+              type="number"
               error={errors}
               register={register}
               placeholder="Enter your phone number"
@@ -82,15 +86,6 @@ const PartnerInfoForm = () => {
               error={errors}
               register={register}
               placeholder="Enter your Company Name"
-            />
-            <InputField
-              label="Phone Number"
-              id="phone"
-              name="phone"
-              type="number"
-              error={errors}
-              register={register}
-              placeholder="Enter your phone number"
             />
             <InputField
               label="Your Business Type"

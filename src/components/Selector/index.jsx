@@ -46,7 +46,7 @@ const CustomSelector = ({ options, displayLogo = true, other, setIsSelected }) =
   };
 
   return (
-    <div className="w-full h-full flex flex-col justify-start gap-[20px]">
+    <div className="w-full h-full flex flex-col justify-start gap-[10px]">
       {options.map((option, index) => (
         <div
           key={index}
@@ -62,7 +62,7 @@ const CustomSelector = ({ options, displayLogo = true, other, setIsSelected }) =
             className={clsx(
               "w-full h-full gap-[20px] py-[10px] px-[20px] flex flex-row items-center border-[0.3px] rounded-[10px] z-10",
               {
-                "h-[calc(100%-2px)] w-[calc(100%-2px)] bg-white":
+                "h-[calc(100%-3px)] w-[calc(100%-3px)] bg-white":
                 activeIndices.includes(index),
                 "border-transparent": !activeIndices.includes(index),
               }
@@ -93,10 +93,7 @@ const CustomSelector = ({ options, displayLogo = true, other, setIsSelected }) =
         <Input
           type="text"
           placeholder={other}
-          onChange = {(e) => {
-            SelectIndustryAndService("");
-            AddOtherOption(e.target.value)
-          }}
+          onChange={handleInputChange}
           className="w-full h-full rounded-[10px] py-[10px] px-[20px]"
         />
       </div>

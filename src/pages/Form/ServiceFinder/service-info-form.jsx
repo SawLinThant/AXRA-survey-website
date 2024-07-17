@@ -2,9 +2,9 @@ import InputField from "@/components/CustomInput";
 import { CREATE_SERVICE } from "@/graphql/mutations/formMutation";
 import { useOption } from "@/lib/context/option-context";
 import { useMutation } from "@apollo/client";
-import { Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { Loader2 } from "lucide-react";
 
 const ServiceInfoForm = () => {
   const {
@@ -13,11 +13,15 @@ const ServiceInfoForm = () => {
     formState: { errors },
   } = useForm();
   const { option, industryAndService, other } = useOption();
-  const category = other && other.length > 0 ? other : industryAndService;
   const [CreateService, { loading }] = useMutation(CREATE_SERVICE);
   const navigate = useNavigate();
   console.log(loading);
   const onSubmit = handleSubmit(async (credentials) => {
+    const categoryArray = [
+      ...(industryAndService || []),
+      ...(other ? [other] : []),
+    ];
+    const category = categoryArray.join(", ");
     try {
       await CreateService({
         variables: {
@@ -38,7 +42,7 @@ const ServiceInfoForm = () => {
 
   return (
     <div className="w-full h-full flex flex-col items-center">
-      <div className="w-[300px] mt-[70px] flex flex-col gap-[40px]">
+      <div className="w-[300px] mt-[40px] flex flex-col gap-[40px]">
         <div className=" w-full gap-[25px] flex flex-col items-center justify-between">
           <div className="w-[220px] h-10">
             <img
@@ -64,10 +68,11 @@ const ServiceInfoForm = () => {
               placeholder="Enter your name"
               requireSymbol="*"
             />
-               <InputField
+            <InputField
               label="Phone Number"
               id="phone"
               name="phone"
+              type="number"
               error={errors}
               register={register}
               placeholder="Enter your phone number"
@@ -80,18 +85,6 @@ const ServiceInfoForm = () => {
               error={errors}
               register={register}
               placeholder="Enter your Company Name"
-            />        
-            
-            <InputField
-              label="Phone Number"
-              id="phone"
-              name="phone"
-              type="number"
-              error={errors}
-              //  value={signUpData.username}
-              onChange={handleChange}
-              register={register}
-              placeholder="Enter your phone number"
             />
             <InputField
               label="Your Business Type"
@@ -103,9 +96,15 @@ const ServiceInfoForm = () => {
             />
           </div>
           <div className="w-full h-[80px] flex flex-row items-center justify-center">
-            <button disabled={loading} type="submit" className="w-[100px] flex items-center justify-center mt-8 h-[40px] border rounded-[20px] bg-gradient-to-r from-company_pink to-company_purple text-[12px] font-Inter">
-            {loading? (<Loader2 className="w-4 h-4 animate-spin mr-1.5" />): null}
-            {loading ? "submiting" : "submit"}
+            <button
+              disabled={loading}
+              type="submit"
+              className="w-[100px] flex items-center justify-center mt-8 h-[40px] border rounded-[20px] bg-gradient-to-r from-company_pink to-company_purple text-[12px] font-Inter"
+            >
+              {loading ? (
+                <Loader2 className="w-4 h-4 animate-spin mr-1.5" />
+              ) : null}
+              {loading ? "submiting" : "submit"}
             </button>
           </div>
           <div className="h-[20px]"></div>

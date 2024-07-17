@@ -18,7 +18,7 @@ const Service = () => {
   console.log(isSelected)
   return (
     <div className="w-full h-full flex flex-col items-center">
-      <div className="w-[300px] mt-[70px] flex flex-col gap-[40px]">
+      <div className="w-[300px] mt-[40px] flex flex-col gap-[40px]">
         <div className=" w-full gap-[25px] flex flex-col items-center justify-between">
           <div className="w-[220px] h-10">
             <img
@@ -27,13 +27,14 @@ const Service = () => {
               className="w-full h-full"
             />
           </div>
-          <div className="w-full h-[60px] text-center leading-8">
-            <h2 className="font-Lato text-[20px] text-clip h-full font-normal text-headercolor">
-              Thank you for considering us!Here are the services we offer:
+          <div className="w-full h-[60px] leading-8">
+            <h2 className=" flex flex-col text-clip h-full  ">
+              <p className="text-center font-Lato text-[20px] font-normal text-headercolor">Thank you for considering us!</p> 
+              <p className="text-center font-Lato text-[20px] font-normal text-headercolor">Here are the services we offer:</p>
             </h2>
           </div>
         </div>
-        <div className="w-full flex flex-col">
+        <div className="w-full h-[368px] flex flex-col">
           <CustomSelector
             options={services}
             displayLogo={true}
@@ -42,16 +43,16 @@ const Service = () => {
           />
         </div>
 
-        { !isNext?<div className="w-full h-[15px] top-1 text-center">
+        { !isNext?<div className="w-full h-[15px] top-1 mt-3 text-center">
           <p className="font-Lato text-[12px] font-medium text-red-600">
           * Please select (at least) one option to submit the survey!
           </p>
         </div>: null}
 
-        <div className="w-full h-[80px] flex justify-center">
+        <div className="w-full h-[80px] flex flex-row items-center justify-center">
           <button
             onClick={handleClick}
-            className="w-[100px] h-[40px] border rounded-[20px] bg-gradient-to-r from-company_pink to-company_purple text-[12px] font-Inter"
+            className="w-[100px] mb-2 h-[40px] border rounded-[20px] bg-gradient-to-r from-company_pink to-company_purple text-[12px] font-Inter"
           >
             Next
           </button>

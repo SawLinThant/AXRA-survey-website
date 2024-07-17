@@ -16,8 +16,8 @@ const PartnerService = () => {
     }
   };
   return (
-    <div className="w-full h-full flex flex-col items-center">
-      <div className="w-[300px] mt-[70px] flex flex-col gap-[40px]">
+    <div className="w-full h-[640px] flex flex-col items-center">
+      <div className="w-[300px] mt-[40px] flex flex-col gap-[40px]">
         <div className=" w-full gap-[25px] flex flex-col items-center justify-between">
           <div className="w-[220px] h-10">
             <img
@@ -28,8 +28,9 @@ const PartnerService = () => {
           </div>
           <div className="w-full h-[90px] text-center leading-8">
             <h2 className="font-Lato text-[20px] text-center h-full font-normal text-headercolor ">
-              Thank you for your interest in partnering with us! We offer the
-              following services:
+            <p className="text-center font-Lato text-[20px] font-normal text-headercolor">Thank you for your interest in</p> 
+            <p className="text-center font-Lato text-[20px] font-normal text-headercolor">partnering with us! </p> 
+            <p className="text-center font-Lato text-[20px] font-normal text-headercolor">We offer the following services</p> 
             </h2>
           </div>
         </div>
@@ -48,10 +49,10 @@ const PartnerService = () => {
           </p>
         </div>: null}
 
-        <div className="w-full h-[80px] flex justify-center">
+        <div className="w-full h-[80px] flex flex-row items-center justify-center">
           <button
             onClick={handleClick}
-            className="w-[100px] h-[40px] border rounded-[20px] bg-gradient-to-r from-company_pink to-company_purple text-[12px] font-Inter"
+            className="w-[100px] h-[40px] mb-2 border rounded-[20px] bg-gradient-to-r from-company_pink to-company_purple text-[12px] font-Inter"
           >
             Next
           </button>

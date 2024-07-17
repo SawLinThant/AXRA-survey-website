@@ -14,7 +14,7 @@ const InputField = ({
   error,
   requireSymbol
 }) => {
-  const hasError = get(error, name);
+  const hasError = get(error, name, type);
   const [focus, setFocus] = useState(false);
   const inputRef = React.useRef < HTMLInputElement > null;
 
@@ -68,7 +68,7 @@ const InputField = ({
           })}
           value={value}
           onChange={onChange}
-          placeholder={hasError ? "Invalid" : placeholder}
+          placeholder={hasError ? "Invalid Phone Number" : placeholder}
           // placeholder={placeholder}
         />
       ) : (

@@ -12,30 +12,10 @@ const CustomSelectorTwo = ({ displayLogo = false, other, setIsSelected }) => {
 
   console.log(activeIndices);
 
-//   const handleOption = (option, index) => {
-//     if (option.name === "Others") {
-//       setIsOtherOption(!isOtherOption);
-//       if (activeIndices.includes(index)) {
-//         setActiveIndices(activeIndices.filter((i) => i !== index));
-//       } else {
-//         setActiveIndices([...activeIndices, index]);
-//       }
-//       return;
-//     } else {
-//       SelectIndustryAndService(option.name);
-//     }
-
-//     if (activeIndices.includes(index)) {
-//       setActiveIndices(activeIndices.filter((i) => i !== index));
-//     } else {
-//       setActiveIndices([...activeIndices, index]);
-//     }
-
-//     setIsSelected(activeIndices.length > 0);
-//   };
 
 const handleOption = (option, index) => {
     let updatedIndices = [];
+    console.log(updatedIndices.length)
     if (option.name === "Others") {
       setIsOtherOption(!isOtherOption);
       if (activeIndices.includes(index)) {
@@ -87,7 +67,7 @@ const handleOption = (option, index) => {
                 className={clsx(
                   "w-full h-full gap-[20px] py-[10px] px-[10px] flex flex-row justify-center items-center border-[0.3px] rounded-[10px] z-10",
                   {
-                    "h-[calc(100%-2px)] w-[calc(100%-2px)] bg-white":
+                    "h-[calc(100%-3px)] w-[calc(100%-3px)] bg-white":
                       activeIndices.includes(index),
                     "border-[0.3px]": !activeIndices.includes(index),
                   }
