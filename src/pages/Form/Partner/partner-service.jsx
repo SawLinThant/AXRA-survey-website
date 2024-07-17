@@ -16,7 +16,7 @@ const PartnerService = () => {
     }
   };
   return (
-    <div className="w-full h-[640px] flex flex-col items-center">
+    <div className="w-full h-[640px] flex flex-col items-center min-h-screen">
       <div className="w-[300px] mt-[40px] flex flex-col gap-[40px]">
         <div className=" w-full gap-[25px] flex flex-col items-center justify-between">
           <div className="w-[220px] h-10">
