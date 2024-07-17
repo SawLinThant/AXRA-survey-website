@@ -62,7 +62,7 @@ const CustomSelector = ({ options, displayLogo = true, other, setIsSelected }) =
             className={clsx(
               "w-full h-full gap-[20px] py-[10px] px-[20px] flex flex-row items-center border-[0.3px] rounded-[10px] z-10",
               {
-                "h-[calc(100%-3px)] w-[calc(100%-3px)] bg-white":
+                "h-[calc(100%-4px)] w-[calc(100%-4px)] bg-white":
                 activeIndices.includes(index),
                 "border-transparent": !activeIndices.includes(index),
               }

@@ -67,7 +67,7 @@ const handleOption = (option, index) => {
                 className={clsx(
                   "w-full h-full gap-[20px] py-[10px] px-[10px] flex flex-row justify-center items-center border-[0.3px] rounded-[10px] z-10",
                   {
-                    "h-[calc(100%-3px)] w-[calc(100%-3px)] bg-white":
+                    "h-[calc(100%-4px)] w-[calc(100%-4px)] bg-white":
                       activeIndices.includes(index),
                     "border-[0.3px]": !activeIndices.includes(index),
                   }

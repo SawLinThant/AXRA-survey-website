@@ -14,7 +14,7 @@ const Form = () => {
   return (
     <OptionProvider>
       <div className="w-full md:w-full lg:w-full bg-white">
-        <div className="w-full rounded-[20px] border-[5px] border-form_border bg-background_color">
+        <div className="w-full rounded-[20px] border-[5px] border-form_border dark:bg-headercolor bg-background_color">
           <Routes>
             <Route path="*" element={<SplashScreen />} />
             <Route path="Selectoptions" element={<SelectOption />} />
