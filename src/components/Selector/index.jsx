@@ -11,6 +11,26 @@ const CustomSelector = ({ options, displayLogo = true, other, setIsSelected }) =
  
   console.log(activeIndices)
 
+  // const handleOption = (option, index) => {
+  //   let updatedIndices = [];
+  //   if (option.name === "Others") {
+  //     setIsOtherOption(!isOtherOption);
+  //     if (activeIndices.includes(index)) {
+  //       updatedIndices = activeIndices.filter((i) => i !== index);
+  //     } else {
+  //       updatedIndices = [...activeIndices, index];
+  //     }
+  //   } else {
+  //     SelectIndustryAndService(option.name);
+  //     if (activeIndices.includes(index)) {
+  //       updatedIndices = activeIndices.filter((i) => i !== index);
+  //     } else {
+  //       updatedIndices = [...activeIndices, index];
+  //     }
+  //   }
+  //   setActiveIndices(updatedIndices);
+  //   setIsSelected(updatedIndices.length > 0);
+  // };
   const handleOption = (option, index) => {
     let updatedIndices = [];
     if (option.name === "Others") {

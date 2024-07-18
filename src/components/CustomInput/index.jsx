@@ -14,7 +14,7 @@ const InputField = ({
   error,
   requireSymbol
 }) => {
-  const hasError = get(error, name, type);
+  const hasError = get(error, name);
   const [focus, setFocus] = useState(false);
   const inputRef = React.useRef < HTMLInputElement > null;
 
