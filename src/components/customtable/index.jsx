@@ -27,7 +27,6 @@ import { ChevronDown } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import LoaderComponent from "../LoaderComponent.jsx";
 import { columnWithoudId } from "./column.jsx";
-import { useEffect } from "react";
 
 const CustomTable = () => {
   //const [data, setData] = useState([...dummyData]);
