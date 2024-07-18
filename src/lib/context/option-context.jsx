@@ -5,9 +5,11 @@ export const OptionContext = createContext();
 export const OptionProvider = ({ children }) => {
   const [option, setOption] = useState("");
   const [industryAndService, setIndustryAndService] = useState([]);
+  const [industry, setIndustry] = useState([]);
   const [other, setOther] = useState("")
    console.log("Other Option selected:",other);
-   console.log("Industry selected:",industryAndService);
+   console.log("Industry:",industry);
+   console.log("Service selected:",industryAndService);
  // console.log("Other Option selected:",other);
   const SelectOption = (selectedOption) => {
     setOption(selectedOption);
@@ -19,6 +21,16 @@ export const OptionProvider = ({ children }) => {
         return prev.filter((item) => item !== IndustyOrService)
       }else{
         return [...prev,IndustyOrService]
+      }
+    });
+  };
+
+  const SelectIndustry = (Industy) => {
+    setIndustry((prev) => {
+      if(prev.includes(Industy)){
+        return prev.filter((item) => item !== Industy)
+      }else{
+        return [...prev,Industy]
       }
     });
   };
@@ -37,9 +49,11 @@ export const OptionProvider = ({ children }) => {
         option,
         industryAndService,
         other,
+        industry,
         SelectOption,
         SelectIndustryAndService,
-        AddOtherOption
+        AddOtherOption,
+        SelectIndustry
       }}
     >
       {children}

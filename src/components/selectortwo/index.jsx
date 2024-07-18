@@ -8,7 +8,7 @@ const CustomSelectorTwo = ({ displayLogo = false, other, setIsSelected }) => {
   const [activeIndices, setActiveIndices] = useState([]);
   const [isOtherOption, setIsOtherOption] = useState(false);
   const [otherValue, setOtherValue] = useState("");
-  const { SelectIndustryAndService, AddOtherOption } = useOption();
+  const { SelectIndustryAndService, AddOtherOption, SelectIndustry } = useOption();
 
   console.log(activeIndices);
 
@@ -24,7 +24,7 @@ const handleOption = (option, index) => {
         updatedIndices = [...activeIndices, index];
       }
     } else {
-      SelectIndustryAndService(option.name);
+      SelectIndustry(option.name);
       if (activeIndices.includes(index)) {
         updatedIndices = activeIndices.filter((i) => i !== index);
       } else {

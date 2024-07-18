@@ -14,7 +14,7 @@ const JobInfoForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { option, industryAndService, other } = useOption();
+  const { option, industryAndService, other, industry } = useOption();
 
   console.log(other);
   const [createJob, { loading }] = useMutation(CREATE_JOB);
@@ -22,7 +22,7 @@ const JobInfoForm = () => {
 
   const onSubmit = handleSubmit(async (credentials) => {
     const categoryArray = [
-      ...(industryAndService || []),
+      ...(industry || []),
       ...(other ? [other] : []),
     ];
     const category = categoryArray.join(", ");
