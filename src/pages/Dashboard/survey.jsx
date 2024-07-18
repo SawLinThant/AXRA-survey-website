@@ -3,9 +3,18 @@ import LoaderComponent from "@/components/LoaderComponent";
 import CustomSquare from "@/components/square";
 import { GET_AVG_COUNTS } from "@/graphql/queries/userQueries";
 import { useQuery } from "@apollo/client";
+import { useEffect } from "react";
 
 const Survey = () => {
-  const { data, error, loading } = useQuery(GET_AVG_COUNTS);
+  const { data, error, loading, refetch } = useQuery(GET_AVG_COUNTS);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      refetch();
+    }, 5000); // Refetch every 5 seconds
+
+    return () => clearInterval(interval); // Cleanup on unmount
+  }, [refetch]);
 
   if (loading) return <LoaderComponent />;
   if (error) return "Fail to get users!";
@@ -26,6 +35,8 @@ const Survey = () => {
       count: client_aggregate?.aggregate?.count,
     },
   ];
+
+
 
   return (
     <div className="w-full h-screen flex flex-col p-10 bg-background_color">
