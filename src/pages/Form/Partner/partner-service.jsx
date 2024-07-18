@@ -17,7 +17,7 @@ const PartnerService = () => {
     }
   };
   return (
-    <div className="w-full h-screen overflow-y-auto flex flex-col items-center ">
+    <div className="w-full h-screen overflow-y-auto flex flex-col items-center bg-white ">
       <div className="w-[300px] mt-[30px] flex flex-col gap-[40px] ">
         <div className=" w-full gap-[25px] flex flex-col items-center justify-between">
           <div className="w-[220px] h-10">
