@@ -114,7 +114,7 @@ const CustomSelector = ({ options, displayLogo = true, other, setIsSelected }) =
           type="text"
           placeholder={other}
           onChange={handleInputChange}
-          className="w-full h-full rounded-[10px] py-[10px] px-[20px]"
+          className="w-full font-Inter text-[12px] h-full rounded-[10px] py-[10px] px-[20px]"
         />
       </div>
     </div>

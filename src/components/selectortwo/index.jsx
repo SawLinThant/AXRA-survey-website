@@ -99,10 +99,10 @@ const handleOption = (option, index) => {
       >
         <Input
           type="text"
-          placeholder={other}
+          placeholder="Please specify the industry of your interest!"
           value={otherValue}
           onChange={handleInputChange}
-          className="w-full h-full rounded-[10px] py-[10px] px-[20px]"
+          className="w-full h-full font-Inter text-[12px] rounded-[10px] py-[10px] px-[20px]"
         />
       </div>
     </div>
