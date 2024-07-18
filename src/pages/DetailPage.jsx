@@ -22,7 +22,8 @@ const DetailPage = () => {
   const user = data.user_by_pk;
 
   return (
-    <div className="max-w-[60rem] mx-4 my-[1rem] lg:my-3 md:mx-auto lg:mx-auto">
+    <div className="w-full flex flex-col items-center justify-center overflow-y-auto">
+    <div className="w-[80vw] mx-4 my-[1rem] lg:my-[5rem] md:mx-auto lg:mx-auto">
       <Card>
         <CardHeader>
           <div className="flex justify-between items-center">
@@ -153,6 +154,7 @@ const DetailPage = () => {
           )}
         </CardContent>
       </Card>
+    </div>
     </div>
   );
 };
