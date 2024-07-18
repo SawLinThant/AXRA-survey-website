@@ -24,7 +24,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { ChevronDown } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import LoaderComponent from "../LoaderComponent.jsx";
 import { columnWithoudId } from "./column.jsx";
 import { useEffect } from "react";
@@ -124,6 +124,14 @@ const CustomTable = () => {
       }
     });
   };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      refetch();
+    }, 5000); // Refetch every 5 seconds
+
+    return () => clearInterval(interval); // Cleanup on unmount
+  }, [refetch]);
 
   if (loading) return <LoaderComponent />;
   if (error) return "Fail to get users!";
