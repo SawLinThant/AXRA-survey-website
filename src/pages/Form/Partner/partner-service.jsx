@@ -61,7 +61,7 @@ const PartnerService = () => {
         >
           <button
             onClick={handleClick}
-            className="w-[100px] h-[40px] mb-2 border rounded-[20px] bg-gradient-to-r from-company_pink to-company_purple text-[12px] font-Inter"
+            className="w-[100px] text-white h-[40px] mb-2 border rounded-[20px] bg-gradient-to-r from-company_pink to-company_purple text-[12px] font-Inter"
           >
             Next
           </button>

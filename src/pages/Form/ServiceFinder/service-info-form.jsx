@@ -99,7 +99,7 @@ const ServiceInfoForm = () => {
             <button
               disabled={loading}
               type="submit"
-              className="w-[100px] flex items-center justify-center mt-8 h-[40px] border rounded-[20px] bg-gradient-to-r from-company_pink to-company_purple text-[12px] font-Inter"
+              className="w-[100px] text-white flex items-center justify-center mt-8 h-[40px] border rounded-[20px] bg-gradient-to-r from-company_pink to-company_purple text-[12px] font-Inter"
             >
               {loading ? (
                 <Loader2 className="w-4 h-4 animate-spin mr-1.5" />

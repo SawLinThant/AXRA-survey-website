@@ -53,7 +53,7 @@ const IndustrySelector = () => {
         <div className="w-full h-[40px] flex justify-center">
           <button
             onClick={handleClick}
-            className="w-[100px] h-[40px] border rounded-[20px] bg-gradient-to-r from-company_pink to-company_purple text-[12px] font-Inter"
+            className="w-[100px] text-white h-[40px] border rounded-[20px] bg-gradient-to-r from-company_pink to-company_purple text-[12px] font-Inter"
           >
             Next
           </button>
