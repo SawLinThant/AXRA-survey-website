@@ -24,13 +24,13 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { ChevronDown } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import LoaderComponent from "../LoaderComponent.jsx";
 import { columnWithoudId } from "./column.jsx";
 
 const CustomTable = () => {
   //const [data, setData] = useState([...dummyData]);
-  const { data, loading, error } = useQuery(GET_USERS);
+  const { data, loading, error, refetch } = useQuery(GET_USERS);
 
   const [columnFilters, setColumnFilters] = useState([]);
   const filterOptions = ["partner", "service", "job"];
@@ -115,6 +115,14 @@ const CustomTable = () => {
       }
     });
   };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      refetch();
+    }, 5000); // Refetch every 5 seconds
+
+    return () => clearInterval(interval); // Cleanup on unmount
+  }, [refetch]);
 
   if (loading) return <LoaderComponent />;
   if (error) return "Fail to get users!";
