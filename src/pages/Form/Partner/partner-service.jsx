@@ -1,5 +1,6 @@
 import CustomSelector from "@/components/Selector";
 import { services } from "@/config/service";
+import clsx from "clsx";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -49,7 +50,15 @@ const PartnerService = () => {
           </p>
         </div>: null}
 
-        <div className="w-full h-[80px] flex flex-row items-center justify-center">
+        <div 
+        //className="w-full h-[70px] flex flex-row items-center justify-center"
+        className={clsx("w-full  flex flex-row items-center justify-center",
+          {
+            "h-[70px]": isNext,
+            "h-[20px]": !isNext
+          }
+        )}
+        >
           <button
             onClick={handleClick}
             className="w-[100px] h-[40px] mb-2 border rounded-[20px] bg-gradient-to-r from-company_pink to-company_purple text-[12px] font-Inter"
