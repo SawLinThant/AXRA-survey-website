@@ -54,7 +54,7 @@ const PartnerService = () => {
         //className="w-full h-[70px] flex flex-row items-center justify-center"
         className={clsx("w-full  flex flex-row items-center justify-center",
           {
-            "h-[70px]": isNext,
+            "h-[80px]": isNext,
             "h-[20px]": !isNext
           }
         )}
